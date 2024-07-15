@@ -31,10 +31,10 @@ date_str = datetime.now().strftime('%Y%m%d')
 offline=False
 show_visual=False
 
-# league_name = "Nerd Herd Dynasty"
-league_name = "Fantasy Degens"
+league_name = "Nerd Herd Dynasty"
+# league_name = "Fantasy Degens"
 # league_name = "Dirty Dozen"
-recommend_adds_within_x_value_points = 4
+recommend_adds_within_x_value_points = 2
 
 print(f"Running process for {league_name}")
 
@@ -177,7 +177,7 @@ if show_visual==True:
     plt.show()
 
 # create weighted average trade value column
-merged_df["weighted_avg_trade_value"] = round((((2*merged_df["JB_normalized"])+(merged_df["KTC_normalized"])/3)),0)
+merged_df["weighted_avg_trade_value"] = round((merged_df["JB_normalized"]+merged_df["JB_normalized"]+merged_df["KTC_normalized"])/3,0)
 
 
 from espn_api.football import League
@@ -463,10 +463,10 @@ for pos in bottom_roster_players['Position'].unique():
 
 # Output position-based recommendations
 if position_based_recommendations:
-    print("\nYou should consider making the following transactions (position-based):")
+    print("\n\nYou should consider making the following transactions (position-based):")
     for drop_player, recommendation in position_based_recommendations.items():
         drop_info = recommendation['drop']
-        print(f"Drop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']})")
+        print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']})")
         for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
             suggestion_type = "Maybe " if add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points else ""
             print(f"    {i}) {suggestion_type}Add: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']})")
