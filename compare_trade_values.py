@@ -34,7 +34,7 @@ show_visual=False
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
 # league_name = "Dirty Dozen"
-recommend_adds_within_x_value_points = 2
+recommend_adds_within_x_value_points = 1
 
 print(f"Running process for {league_name}")
 
@@ -365,8 +365,6 @@ top_free_agents = top_free_agents[top_free_agents["Player"]!="Brian Thomas Jr."]
 # for specific position only
 # top_free_agents = top_free_agents[top_free_agents["Position"]=="RB"]
 
-top_free_agents = top_free_agents.head(20)
-
 top_free_agents = top_free_agents[["Player", "Position", "Team", "Age", "JB Trade Value", "KTC Trade Value", "JB_normalized", "KTC_normalized", "weighted_avg_trade_value"]]
 
 bottom_roster_players = bottom_roster_players[["Player", "Position", "Team", "Age", "JB Trade Value", "KTC Trade Value", "JB_normalized", "KTC_normalized", "weighted_avg_trade_value"]]
@@ -385,8 +383,8 @@ print()
 print("Bottom 10 Roster Players:")
 print(bottom_roster_players.head(10).to_string(index=False))
 print()
-print("Top 20 Free Agents:")
-print(top_free_agents.head(20).to_string(index=False))
+print("Top 30 Free Agents:")
+print(top_free_agents.head(30).to_string(index=False))
 
 print()
 print()
