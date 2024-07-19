@@ -32,7 +32,7 @@ date_str = datetime.now().strftime('%Y%m%d')
 
 offline=True
 show_visual=False
-recommend_maybe = False
+recommend_maybe = True
 
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
@@ -395,41 +395,40 @@ bottom_roster_players = bottom_roster_players.rename(columns={"weighted_avg_trad
 
 bottom_roster_players["avg_value"] = bottom_roster_players["avg_value"].astype(int)
 
-pd.set_option("display.max_columns", 8)
-
-print()
-print("Bottom 10 Roster Players:")
-print(bottom_roster_players.head(10).to_string(index=False))
-print()
-print("Top 30 Free Agents:")
-print(top_free_agents.head(30).to_string(index=False))
-
-print()
-print()
-
 # Function to calculate VORP for a list of players sorted by avg_value
-def calculate_vorp(players):
-    vorp = {}
-    num_players = len(players)
-    for i, player in players.reset_index().iterrows():
-        if i + 4 < num_players:
-            weighted_avg_value = (
-                0.5 * players.iloc[i + 1]['avg_value'] +
-                0.25 * players.iloc[i + 2]['avg_value'] +
-                0.125 * players.iloc[i + 3]['avg_value'] +
-                0.125 * players.iloc[i + 4]['avg_value']
-            )
-            vorp_score = player['avg_value'] - weighted_avg_value
-        else:
-            vorp_score = 0  # Not enough players to calculate VORP
-        vorp[player['Player']] = round(vorp_score,1)
-    return vorp
+# def calculate_vorp(players):
+#     vorp = {}
+#     num_players = len(players)
+#     for i, player in players.reset_index().iterrows():
+#         if i + 4 < num_players:
+#             weighted_avg_value = (
+#                 0.5 * players.iloc[i + 1]['avg_value'] +
+#                 0.25 * players.iloc[i + 2]['avg_value'] +
+#                 0.125 * players.iloc[i + 3]['avg_value'] +
+#                 0.125 * players.iloc[i + 4]['avg_value']
+#             )
+#             vorp_score = player['avg_value'] - weighted_avg_value
+#         else:
+#             vorp_score = 0  # Not enough players to calculate VORP
+#         vorp[player['Player']] = round(vorp_score,1)
+#     return vorp
 
 # Calculate VORP for each free agent
 free_agent_vorp = {}
 for pos in top_free_agents['Position'].unique():
     free_agents_pos_sorted = top_free_agents[top_free_agents['Position'] == pos].sort_values(by='avg_value', ascending=False)
-    free_agent_vorp.update(calculate_vorp(free_agents_pos_sorted))
+    # old way, dynamic VORP
+    # free_agent_vorp.update(calculate_vorp(free_agents_pos_sorted))
+    if len(free_agents_pos_sorted) >= 4:
+        weighted_avg_value = (
+            0.5 * free_agents_pos_sorted.iloc[0]['avg_value'] +
+            0.25 * free_agents_pos_sorted.iloc[1]['avg_value'] +
+            0.125 * free_agents_pos_sorted.iloc[2]['avg_value'] +
+            0.125 * free_agents_pos_sorted.iloc[3]['avg_value']
+        )
+        for _, player in top_free_agents[top_free_agents['Position'] == pos].iterrows():
+            free_agent_vorp[player['Player']] = round(player['avg_value'] - weighted_avg_value,1)
+
 
 # Calculate VORP for each rostered player using the top 4 free agents at their position
 rostered_player_vorp = {}
@@ -478,6 +477,27 @@ for _, free_agent in top_free_agents_sorted.iterrows():
             })
             bottom_roster_players_sorted = bottom_roster_players_sorted[bottom_roster_players_sorted['Player'] != roster_player['Player']]
             break
+
+
+# add back to dataframes
+# Add VORP to bottom roster players
+bottom_roster_players['VORP'] = bottom_roster_players.apply(lambda player: rostered_player_vorp.get(player['Player'], 0), axis=1)
+
+# Add VORP to top free agents
+top_free_agents['VORP'] = top_free_agents.apply(lambda player: free_agent_vorp.get(player['Player'], 0), axis=1)
+
+
+pd.set_option("display.max_columns", 8)
+
+print()
+print("Bottom 10 Roster Players:")
+print(bottom_roster_players.head(10).to_string(index=False))
+print()
+print("Top 30 Free Agents:")
+print(top_free_agents.head(30).to_string(index=False))
+
+print()
+print()
 
 # Output overall recommendations
 if players_to_drop and players_to_add:
@@ -542,7 +562,7 @@ for pos in bottom_roster_players['Position'].unique():
 
 # Output position-based recommendations
 if position_based_recommendations:
-    print("\n\nYou should consider making the following transactions (position-based):")
+    print("\n\n\nYou should consider making the following transactions (position-based):")
     any_valid_position_based_recommendations = False
     for drop_player, recommendation in position_based_recommendations.items():
         drop_info = recommendation['drop']
