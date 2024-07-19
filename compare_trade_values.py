@@ -30,7 +30,7 @@ def get_latest_file(directory):
 
 date_str = datetime.now().strftime('%Y%m%d')
 
-offline=True
+offline=False
 show_visual=False
 recommend_maybe = True
 
