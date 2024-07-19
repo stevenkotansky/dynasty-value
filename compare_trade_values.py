@@ -32,6 +32,7 @@ date_str = datetime.now().strftime('%Y%m%d')
 
 offline=True
 show_visual=False
+recommend_maybe = False
 
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
@@ -314,7 +315,6 @@ elif league_name in ["Dirty Dozen", "Fantasy Degens"]:
     free_agents_df = merged_df
 
     free_agents_df['BestMatch'] = free_agents_df['Player'].apply(lambda x: get_best_match(x, players_on_rosters))
-    print(free_agents_df)
 
     # filter to just free agents
     free_agents_df = free_agents_df[free_agents_df["BestMatch"].isnull()]
@@ -482,6 +482,7 @@ for _, free_agent in top_free_agents_sorted.iterrows():
 # Output overall recommendations
 if players_to_drop and players_to_add:
     print("You should consider making the following transactions (overall):")
+    any_valid_overall_recommendations = False
     for i in range(len(players_to_drop)):
         drop_player = players_to_drop[i]
         add_player = players_to_add[i]
@@ -494,9 +495,19 @@ if players_to_drop and players_to_add:
             add_suggestion = "Maybe Add"
             drop_suggestion = "Maybe Drop"
         
+        if not recommend_maybe and add_suggestion == "Maybe Add":
+            continue
+        if not recommend_maybe and drop_suggestion == "Maybe Drop":
+            continue
+
         print(f"{i+1}) {add_suggestion}: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}) / {drop_suggestion}: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']})")
-else:
-    print("No recommendations for dropping or adding players based on trade value differences (overall).")
+        any_valid_overall_recommendations = True
+    
+    if not any_valid_overall_recommendations:
+        if not recommend_maybe:
+            print("No valid recommendations for dropping or adding players based on trade value differences (overall).")
+        else:
+            print("No recommendations for dropping or adding players.")
 
 # Initialize lists for position-based suggestions
 position_based_recommendations = {}
@@ -532,9 +543,10 @@ for pos in bottom_roster_players['Position'].unique():
 # Output position-based recommendations
 if position_based_recommendations:
     print("\n\nYou should consider making the following transactions (position-based):")
+    any_valid_position_based_recommendations = False
     for drop_player, recommendation in position_based_recommendations.items():
         drop_info = recommendation['drop']
-        print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']})")
+        valid_add_candidates = []
         for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
             # Determine if the add_candidate is a sure "Add" or "Maybe Add"
             if (add_candidate['VORP'] > drop_info['VORP'] and add_candidate['avg_value'] > drop_info['avg_value']):
@@ -546,6 +558,24 @@ if position_based_recommendations:
             if (add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points):
                 add_suggestion = "Maybe Add"
 
-            print(f"    {i}) {add_suggestion}: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
+            if not recommend_maybe and add_suggestion == "Maybe Add":
+                continue
+
+            valid_add_candidates.append((i, add_candidate, add_suggestion))
+        
+        if valid_add_candidates:
+            any_valid_position_based_recommendations = True
+            print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']})")
+            for i, add_candidate, add_suggestion in valid_add_candidates:
+                print(f"    {i}) {add_suggestion}: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
+    
+    if not any_valid_position_based_recommendations:
+        if not recommend_maybe:
+            print("No valid position-based recommendations for dropping or adding players based on trade value differences.")
+        else:
+            print("\nNo position-based recommendations for dropping or adding players.")
 else:
-    print("\nNo position-based recommendations for dropping or adding players based on trade value differences.")
+    if not recommend_maybe:
+        print("No valid position-based recommendations for dropping or adding players based on trade value differences.")
+    else:
+        print("\nNo position-based recommendations for dropping or adding players.")
