@@ -30,13 +30,13 @@ def get_latest_file(directory):
 
 date_str = datetime.now().strftime('%Y%m%d')
 
-offline=False
+offline=True
 show_visual=False
 
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
 # league_name = "Dirty Dozen"
-recommend_adds_within_x_value_points = 1
+recommend_adds_within_x_value_points = 2
 
 print(f"Running process for {league_name}")
 
@@ -99,8 +99,6 @@ scaler = MinMaxScaler()
 
 # pd.set_option("display.max_rows", 1000)
 # print(merged_df["KTC Trade Value"])
-
-merged_df.to_csv("Testing.csv", index=False)
 
 merged_df['New_KTC_normalized'] = scaler.fit_transform(merged_df[['KTC Trade Value']])
 merged_df['New_KTC_normalized'] = (merged_df['New_KTC_normalized']*100).astype(int)
@@ -409,8 +407,48 @@ print(top_free_agents.head(30).to_string(index=False))
 print()
 print()
 
+# Function to calculate VORP for a list of players sorted by avg_value
+def calculate_vorp(players):
+    vorp = {}
+    num_players = len(players)
+    for i, player in players.reset_index().iterrows():
+        if i + 4 < num_players:
+            weighted_avg_value = (
+                0.5 * players.iloc[i + 1]['avg_value'] +
+                0.25 * players.iloc[i + 2]['avg_value'] +
+                0.125 * players.iloc[i + 3]['avg_value'] +
+                0.125 * players.iloc[i + 4]['avg_value']
+            )
+            vorp_score = player['avg_value'] - weighted_avg_value
+        else:
+            vorp_score = 0  # Not enough players to calculate VORP
+        vorp[player['Player']] = round(vorp_score,1)
+    return vorp
 
-# Sort bottom roster players by avg_value and top free agents by avg_value
+# Calculate VORP for each free agent
+free_agent_vorp = {}
+for pos in top_free_agents['Position'].unique():
+    free_agents_pos_sorted = top_free_agents[top_free_agents['Position'] == pos].sort_values(by='avg_value', ascending=False)
+    free_agent_vorp.update(calculate_vorp(free_agents_pos_sorted))
+
+# Calculate VORP for each rostered player using the top 4 free agents at their position
+rostered_player_vorp = {}
+for pos in bottom_roster_players['Position'].unique():
+    free_agents_pos_sorted = top_free_agents[top_free_agents['Position'] == pos].sort_values(by='avg_value', ascending=False)
+    if len(free_agents_pos_sorted) >= 4:
+        weighted_avg_value = (
+            0.5 * free_agents_pos_sorted.iloc[0]['avg_value'] +
+            0.25 * free_agents_pos_sorted.iloc[1]['avg_value'] +
+            0.125 * free_agents_pos_sorted.iloc[2]['avg_value'] +
+            0.125 * free_agents_pos_sorted.iloc[3]['avg_value']
+        )
+        for _, player in bottom_roster_players[bottom_roster_players['Position'] == pos].iterrows():
+            rostered_player_vorp[player['Player']] = round(player['avg_value'] - weighted_avg_value,1)
+
+# Add VORP to bottom roster players
+bottom_roster_players['VORP'] = bottom_roster_players.apply(lambda player: rostered_player_vorp.get(player['Player'], 0), axis=1)
+
+# Sort bottom_roster_players by avg_value and top_free_agents by avg_value
 bottom_roster_players_sorted = bottom_roster_players.sort_values(by='avg_value')
 top_free_agents_sorted = top_free_agents.sort_values(by='avg_value', ascending=False)
 
@@ -427,14 +465,16 @@ for _, free_agent in top_free_agents_sorted.iterrows():
                 'Position': roster_player['Position'],
                 'Team': roster_player['Team'],
                 'Age': roster_player['Age'],
-                'avg_value': roster_player['avg_value']
+                'avg_value': roster_player['avg_value'],
+                'VORP': roster_player['VORP']
             })
             players_to_add.append({
                 'Player': free_agent['Player'],
                 'Position': free_agent['Position'],
                 'Team': free_agent['Team'],
                 'Age': free_agent['Age'],
-                'avg_value': free_agent['avg_value']
+                'avg_value': free_agent['avg_value'],
+                'VORP': free_agent_vorp.get(free_agent['Player'], 0)
             })
             bottom_roster_players_sorted = bottom_roster_players_sorted[bottom_roster_players_sorted['Player'] != roster_player['Player']]
             break
@@ -446,7 +486,7 @@ if players_to_drop and players_to_add:
         drop_player = players_to_drop[i]
         add_player = players_to_add[i]
         suggestion_type = "Maybe " if add_player['avg_value'] <= drop_player['avg_value'] <= add_player['avg_value'] + recommend_adds_within_x_value_points else ""
-        print(f"{i+1}) {suggestion_type}Add: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}) / {suggestion_type}Drop: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']})")
+        print(f"{i+1}) {suggestion_type}Add: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}) / {suggestion_type}Drop: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']})")
 else:
     print("No recommendations for dropping or adding players based on trade value differences (overall).")
 
@@ -467,7 +507,8 @@ for pos in bottom_roster_players['Position'].unique():
                             'Position': roster_player['Position'],
                             'Team': roster_player['Team'],
                             'Age': roster_player['Age'],
-                            'avg_value': roster_player['avg_value']
+                            'avg_value': roster_player['avg_value'],
+                            'VORP': roster_player['VORP']
                         },
                         'add_candidates': []
                     }
@@ -476,7 +517,8 @@ for pos in bottom_roster_players['Position'].unique():
                     'Position': free_agent['Position'],
                     'Team': free_agent['Team'],
                     'Age': free_agent['Age'],
-                    'avg_value': free_agent['avg_value']
+                    'avg_value': free_agent['avg_value'],
+                    'VORP': free_agent_vorp.get(free_agent['Player'], 0)
                 })
 
 # Output position-based recommendations
@@ -484,9 +526,9 @@ if position_based_recommendations:
     print("\n\nYou should consider making the following transactions (position-based):")
     for drop_player, recommendation in position_based_recommendations.items():
         drop_info = recommendation['drop']
-        print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']})")
+        print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']})")
         for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
             suggestion_type = "Maybe " if add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points else ""
-            print(f"    {i}) {suggestion_type}Add: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']})")
+            print(f"    {i}) {suggestion_type}Add: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
 else:
     print("\nNo position-based recommendations for dropping or adding players based on trade value differences.")
