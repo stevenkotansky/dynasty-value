@@ -37,7 +37,7 @@ recommend_maybe = True
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
 # league_name = "Dirty Dozen"
-recommend_adds_within_x_value_points = 2
+recommend_adds_within_x_value_points = 1
 
 print(f"Running process for {league_name}")
 
