@@ -485,8 +485,16 @@ if players_to_drop and players_to_add:
     for i in range(len(players_to_drop)):
         drop_player = players_to_drop[i]
         add_player = players_to_add[i]
-        suggestion_type = "Maybe " if add_player['avg_value'] <= drop_player['avg_value'] <= add_player['avg_value'] + recommend_adds_within_x_value_points else ""
-        print(f"{i+1}) {suggestion_type}Add: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}) / {suggestion_type}Drop: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']})")
+        
+        # Determine if the add_player is a sure "Add" or "Maybe Add"
+        if (add_player['VORP'] > drop_player['VORP'] and add_player['avg_value'] > drop_player['avg_value']):
+            add_suggestion = "Add"
+            drop_suggestion = "Drop"
+        else:
+            add_suggestion = "Maybe Add"
+            drop_suggestion = "Maybe Drop"
+        
+        print(f"{i+1}) {add_suggestion}: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}) / {drop_suggestion}: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']})")
 else:
     print("No recommendations for dropping or adding players based on trade value differences (overall).")
 
@@ -528,7 +536,16 @@ if position_based_recommendations:
         drop_info = recommendation['drop']
         print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']})")
         for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
-            suggestion_type = "Maybe " if add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points else ""
-            print(f"    {i}) {suggestion_type}Add: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
+            # Determine if the add_candidate is a sure "Add" or "Maybe Add"
+            if (add_candidate['VORP'] > drop_info['VORP'] and add_candidate['avg_value'] > drop_info['avg_value']):
+                add_suggestion = "Add"
+            else:
+                add_suggestion = "Maybe Add"
+                
+            # Apply the recommendation window logic
+            if (add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points):
+                add_suggestion = "Maybe Add"
+
+            print(f"    {i}) {add_suggestion}: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
 else:
     print("\nNo position-based recommendations for dropping or adding players based on trade value differences.")
