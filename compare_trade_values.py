@@ -10,6 +10,8 @@ import os
 from jb.get_jb_dynasty import get_jb_trade_values
 from ktc.get_ktc import get_ktc_trade_values
 
+from sklearn.preprocessing import MinMaxScaler
+
 
 def get_latest_file(directory):
     # Get a list of files in the directory
@@ -88,6 +90,24 @@ merged_df.drop(columns=['BestMatch'], inplace=True)
 merged_df = merged_df.rename(columns={"Player_x":"Player", "Player_y": "Matched_Player_Name"})
 
 merged_df = merged_df[["Player", "Matched_Player_Name", "Position", "Team", "Age", "JB Trade Value", "KTC Trade Value", "JB_normalized", "KTC_normalized"]]
+
+
+# get new normalized KTC values with only the bounds of the list overlap
+# create normalized column
+# min-max scaler to normalize trade values
+scaler = MinMaxScaler()
+
+# pd.set_option("display.max_rows", 1000)
+# print(merged_df["KTC Trade Value"])
+
+merged_df.to_csv("Testing.csv", index=False)
+
+merged_df['New_KTC_normalized'] = scaler.fit_transform(merged_df[['KTC Trade Value']])
+merged_df['New_KTC_normalized'] = (merged_df['New_KTC_normalized']*100).astype(int)
+
+merged_df.drop(columns=['KTC_normalized'], inplace=True)
+
+merged_df = merged_df.rename(columns={"New_KTC_normalized":"KTC_normalized"})
 
 # Function to calculate absolute or percentage difference
 def calculate_difference(merged_df, absolute=True):
