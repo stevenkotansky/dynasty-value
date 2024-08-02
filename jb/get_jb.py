@@ -5,10 +5,11 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
 
-def get_jb_trade_values():
-    print()
-    print()
-    print("Scraping Justin Boone Trade Values")
+def get_jb_trade_values(printval=True):
+    if printval==True:
+        print()
+        print()
+        print("Scraping Justin Boone Trade Values")
     def fetch_dynasty_tables(url: str, starting_page="QB", filename_prefix="Dynasty_Trade_Value"):
 
         pages_to_process = ["QB", "RB", "WR", "TE", "Draft Picks"]
@@ -22,7 +23,8 @@ def get_jb_trade_values():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         title = soup.find("h1").text
-        print(f"Scraping Rankings from {title} \n{url}")
+        if printval==True:
+            print(f"Scraping Rankings from {title} \n{url}")
 
         # Find the first table in the HTML
         table = soup.find('table')
@@ -127,17 +129,19 @@ def get_jb_trade_values():
     # Get most recent dynasty rankgs
     url = "https://www.thescore.com/nfl/news/2934869/fantasy-dynasty-trade-value-chart-july-edition"
     dict_of_dfs, datetime_value, filename_prefix, combined_df = fetch_dynasty_tables(url, starting_page="QB", filename_prefix="Dynasty_Trade_Value")
-    print("Finished scraping Justin Boone trade values")
+    if printval==True:
+        print("Finished scraping Justin Boone trade values")
 
     # need to stack the dfs all into one and adjust JB pick value/names, then make normalized values, then value checker for buys and sells
 
     return combined_df
 
 
-def get_jb_redraft():
-    print()
-    print()
-    print("Scraping Justin Boone Redraft Values")
+def get_jb_redraft(printval=True):
+    if printval==True:
+        print()
+        print()
+        print("Scraping Justin Boone Redraft Values")
     def fetch_redraft_tables(url: str):
 
         # Get the HTML content from the URL
@@ -148,7 +152,8 @@ def get_jb_redraft():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         title = soup.find("h1").text
-        print(f"Scraping Rankings from {title} \n{url}")
+        if printval==True:
+            print(f"Scraping Rankings from {title} \n{url}")
 
         # Find the first table in the HTML
         table = soup.find('table')
@@ -179,7 +184,8 @@ def get_jb_redraft():
     # Get most recent redraft rankgs
     url = "https://www.thescore.com/nflfan/news/2817340/fantasy-2024-rankings-top-250-updated"
     redraft_rankings_df = fetch_redraft_tables(url)
-    print("Finished scraping Justin Boone redraft trade values")
+    if printval==True:
+        print("Finished scraping Justin Boone redraft trade values")
 
     # need to stack the dfs all into one and adjust JB pick value/names, then make normalized values, then value checker for buys and sells
 

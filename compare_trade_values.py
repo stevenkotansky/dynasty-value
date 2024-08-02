@@ -32,7 +32,7 @@ def get_latest_file(directory):
 date_str = datetime.now().strftime('%Y%m%d')
 
 def run_league(league_name, recommend_adds_within_x_value_points, recommend_maybe, offline, show_visual, print_tables):
-    print(f"Running process for {league_name}")
+    print(f"Analyzing Potential Adds/Drops for {league_name}")
 
     if offline:
         if print_tables==True:
@@ -41,9 +41,9 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
         jb_redraft_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft"))
         ktc_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"))
     else:
-        jb_df = get_jb_trade_values()
-        jb_redraft_df = get_jb_redraft()
-        ktc_df = get_ktc_trade_values()
+        jb_df = get_jb_trade_values(printval=print_tables)
+        jb_redraft_df = get_jb_redraft(printval=print_tables)
+        ktc_df = get_ktc_trade_values(printval=print_tables)
 
 
     def normalize_name(player_name):
@@ -642,11 +642,11 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
         
         if not any_valid_position_based_recommendations:
             if not recommend_maybe:
-                print("No valid position-based recommendations for dropping or adding players based on trade value differences.")
+                print("No definitive position-based recommendations for dropping or adding players based on trade value differences.")
             else:
                 print("\nNo position-based recommendations for dropping or adding players.")
     else:
         if not recommend_maybe:
-            print("No valid position-based recommendations for dropping or adding players based on trade value differences.")
+            print("No definitive position-based recommendations for dropping or adding players based on trade value differences.")
         else:
             print("\nNo position-based recommendations for dropping or adding players.")

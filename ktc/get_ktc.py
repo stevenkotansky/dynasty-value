@@ -6,9 +6,10 @@ from os import path
 from sklearn.preprocessing import MinMaxScaler
 
 
-def get_ktc_trade_values():
-    print()
-    print("Scraping KTC trade values")
+def get_ktc_trade_values(printval=True):
+    if printval==True:
+        print()
+        print("Scraping KTC trade values")
     #get trade values from KTC website
     #can optionally specify superflex/non-SF (sf by default)
     #can optionally include draft pick values (included by default)
@@ -96,5 +97,6 @@ def get_ktc_trade_values():
         # save full thing to csv
         rookie_df.to_csv(csv_path, index=False)
 
-    print("Finished getting KTC trade values")
+    if printval==True:
+        print("Finished getting KTC trade values")
     return full_df
