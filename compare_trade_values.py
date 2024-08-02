@@ -1,4 +1,5 @@
 import pandas as pd
+pd.options.mode.chained_assignment = None  # default='warn'
 from fuzzywuzzy import process, fuzz
 import matplotlib.pyplot as plt
 import numpy as np
@@ -546,7 +547,11 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             add_player = players_to_add_df.iloc[i]
             
             # Determine if the add_player is a sure "Add" or "Maybe Add"
-            if (add_player['VORP'] > drop_player['VORP'] and add_player['avg_value'] > drop_player['avg_value']):
+            if add_player["redraft_rank"]=="251+":
+                add_player["redraft_rank"]=300
+            if drop_player["redraft_rank"]=="251+":
+                drop_player["redraft_rank"]=300
+            if (add_player['VORP'] >= drop_player['VORP'] and add_player['avg_value'] > drop_player['avg_value']) and add_player['redraft_rank']<=drop_player["redraft_rank"]:
                 add_suggestion = "Add"
                 drop_suggestion = "Drop"
             else:
@@ -563,7 +568,7 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
         
         if not any_valid_overall_recommendations:
             if not recommend_maybe:
-                print("No valid recommendations for dropping or adding players based on trade value differences (overall).")
+                print("No definitive recommendations for dropping or adding players based on trade value differences (overall).")
             else:
                 print("No recommendations for dropping or adding players.")
 
@@ -609,10 +614,16 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             valid_add_candidates = []
             for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
                 # Determine if the add_candidate is a sure "Add" or "Maybe Add"
-                if (add_candidate['VORP'] > drop_info['VORP'] and add_candidate['avg_value'] > drop_info['avg_value']):
+                if add_candidate["redraft_rank"]=="251+":
+                    add_candidate["redraft_rank"]=300
+                if drop_info["redraft_rank"]=="251+":
+                    drop_info["redraft_rank"]=300
+                if (add_candidate['VORP'] >= drop_info['VORP'] and add_candidate['avg_value'] > drop_info['avg_value'] and add_candidate['redraft_rank']<=drop_info["redraft_rank"]):
                     add_suggestion = "Add"
                 else:
                     add_suggestion = "Maybe Add"
+                
+                # Determine if the add_player is a sure "Add" or "Maybe Add"
                     
                 # Apply the recommendation window logic
                 if (add_candidate['avg_value'] <= drop_info['avg_value'] <= add_candidate['avg_value'] + recommend_adds_within_x_value_points):
