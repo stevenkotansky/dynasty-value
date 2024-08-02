@@ -115,8 +115,8 @@ def get_jb_trade_values():
         combined_df['JB_normalized'] = scaler.fit_transform(combined_df[['JB Trade Value']])
         combined_df['JB_normalized'] = (combined_df['JB_normalized']*100).astype(int)
 
-        combined_df.to_csv(f"jb/outfiles/players_{filename_prefix}_{datetime_value}.csv", index=False)
-        dict_of_dfs["Draft Picks"].to_csv(f"jb/outfiles/Draft_Picks_{filename_prefix}_{datetime_value}.csv", index=False)
+        combined_df.to_csv(f"jb/outfiles/dynasty/players_{filename_prefix}_{datetime_value}.csv", index=False)
+        dict_of_dfs["Draft Picks"].to_csv(f"jb/outfiles/dynasty/Draft_Picks_{filename_prefix}_{datetime_value}.csv", index=False)
 
 
 
@@ -132,3 +132,55 @@ def get_jb_trade_values():
     # need to stack the dfs all into one and adjust JB pick value/names, then make normalized values, then value checker for buys and sells
 
     return combined_df
+
+
+def get_jb_redraft():
+    print()
+    print()
+    print("Scraping Justin Boone Redraft Values")
+    def fetch_redraft_tables(url: str):
+
+        # Get the HTML content from the URL
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes
+
+        # Parse the HTML content
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        title = soup.find("h1").text
+        print(f"Scraping Rankings from {title} \n{url}")
+
+        # Find the first table in the HTML
+        table = soup.find('table')
+
+        # Convert the HTML table to a Pandas DataFrame
+        df = pd.read_html(str(table))[0]
+
+        # Find the <time> element and get the datetime attribute
+        time_element = soup.find('time', datetime=True)
+        if time_element:
+            datetime_value = time_element['datetime']
+            # Parse the datetime string
+            dt = datetime.strptime(datetime_value, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+            # Convert to desired format
+            datetime_value = dt.strftime("%m-%d-%Y_%I:%M%p")
+        else:
+            datetime_value = None
+        
+        # save outfiles
+        redraft_rankings_df = df
+
+        redraft_rankings_df.to_csv(f"jb/outfiles/redraft/players_{filename_prefix}_{datetime_value}.csv", index=False)
+
+
+        return datetime_value, filename_prefix, redraft_rankings_df
+
+    # Get most recent redraft rankgs
+    url = "https://www.thescore.com/nflfan/news/2817340/fantasy-2024-rankings-top-250-updated"
+    datetime_value, filename_prefix, redraft_rankings_df = fetch_redraft_tables(url)
+    print("Finished scraping Justin Boone redraft trade values")
+
+    # need to stack the dfs all into one and adjust JB pick value/names, then make normalized values, then value checker for buys and sells
+
+    return redraft_rankings_df

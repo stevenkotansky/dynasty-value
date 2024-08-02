@@ -7,7 +7,7 @@ from datetime import datetime
 import math
 import os
 
-from jb.get_jb_dynasty import get_jb_trade_values
+from jb.get_jb import get_jb_trade_values, get_jb_redraft
 from ktc.get_ktc import get_ktc_trade_values
 
 from sklearn.preprocessing import MinMaxScaler
@@ -48,6 +48,7 @@ if offline:
     ktc_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"))
 else:
     jb_df = get_jb_trade_values()
+    jb_redraft_df = get_jb_redraft()
     ktc_df = get_ktc_trade_values()
 
 
