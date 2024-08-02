@@ -32,12 +32,13 @@ date_str = datetime.now().strftime('%Y%m%d')
 
 offline=False
 show_visual=False
-recommend_maybe = True
 
 league_name = "Nerd Herd Dynasty"
 # league_name = "Fantasy Degens"
 # league_name = "Dirty Dozen"
-recommend_adds_within_x_value_points = 1
+
+recommend_adds_within_x_value_points = 2
+recommend_maybe = True
 
 print(f"Running process for {league_name}")
 
@@ -263,7 +264,7 @@ if league_name=="Nerd Herd Dynasty":
         # print(f"Error pulling ESPN roster: {e}")
         print("Unable to pull roster from ESPN. Using last manually inputted roster (7/10/24).")
         
-        roster = ["Josh Allen", "Saquon Barkley", "Travis Etienne Jr.", "Garrett Wilson", "Justin Jefferson", "Trey McBride", "De'Von Achane", "Cowboys D/ST", "Justin Tucker", "D'Onta Foreman", "Gus Edwards", "Dallas Goedert", "Geno Smith", "Jahan Dotson", "Jermaine Burton", "Ray Davis", "Tee Higgins", "Jake Ferguson", "Zack Moss", "Tank Bigsby", "Nick Chubb", "Braelon Allen", "Aaron Rodgers", "Rico Dowdle", "Rasheen Ali"]
+        roster = ["Josh Allen", "Saquon Barkley", "Travis Etienne Jr.", "Garrett Wilson", "Justin Jefferson", "Trey McBride", "De'Von Achane", "Cowboys D/ST", "Justin Tucker", "Treylon Burks", "Gus Edwards", "Dallas Goedert", "Geno Smith", "Jahan Dotson", "Jermaine Burton", "Ray Davis", "Tee Higgins", "Jake Ferguson", "Zack Moss", "Tank Bigsby", "Nick Chubb", "Braelon Allen", "Aaron Rodgers", "Rico Dowdle", "Rasheen Ali"]
         
         for player in roster:
             name = player
