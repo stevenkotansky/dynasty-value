@@ -30,7 +30,7 @@ def get_latest_file(directory):
 
 date_str = datetime.now().strftime('%Y%m%d')
 
-offline=False
+offline=True
 show_visual=False
 
 league_name = "Nerd Herd Dynasty"
@@ -502,13 +502,35 @@ print(top_free_agents.head(30).to_string(index=False))
 print()
 print()
 
+# Convert players_to_drop and players_to_add to DataFrames if they are not already
+players_to_drop_df = pd.DataFrame(players_to_drop)
+players_to_add_df = pd.DataFrame(players_to_add)
+
+# Merging redraft rankings into the player dataframes
+players_to_drop_df = players_to_drop_df.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+players_to_add_df = players_to_add_df.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+bottom_roster_players = bottom_roster_players.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+top_free_agents = top_free_agents.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+
+# Fill missing rankings with "251+"
+players_to_drop_df['Rk'].fillna('251+', inplace=True)
+players_to_add_df['Rk'].fillna('251+', inplace=True)
+bottom_roster_players['Rk'].fillna('251+', inplace=True)
+top_free_agents['Rk'].fillna('251+', inplace=True)
+
+# Convert rankings to int where possible for proper display
+players_to_drop_df['Rk'] = players_to_drop_df['Rk'].apply(lambda x: int(x) if x != '251+' else x)
+players_to_add_df['Rk'] = players_to_add_df['Rk'].apply(lambda x: int(x) if x != '251+' else x)
+bottom_roster_players['Rk'] = bottom_roster_players['Rk'].apply(lambda x: int(x) if x != '251+' else x)
+top_free_agents['Rk'] = top_free_agents['Rk'].apply(lambda x: int(x) if x != '251+' else x)
+
 # Output overall recommendations
-if players_to_drop and players_to_add:
+if players_to_drop_df.empty is False and players_to_add_df.empty is False:
     print("You should consider making the following transactions (overall):")
     any_valid_overall_recommendations = False
-    for i in range(len(players_to_drop)):
-        drop_player = players_to_drop[i]
-        add_player = players_to_add[i]
+    for i in range(len(players_to_drop_df)):
+        drop_player = players_to_drop_df.iloc[i]
+        add_player = players_to_add_df.iloc[i]
         
         # Determine if the add_player is a sure "Add" or "Maybe Add"
         if (add_player['VORP'] > drop_player['VORP'] and add_player['avg_value'] > drop_player['avg_value']):
@@ -523,7 +545,7 @@ if players_to_drop and players_to_add:
         if not recommend_maybe and drop_suggestion == "Maybe Drop":
             continue
 
-        print(f"{i+1}) {add_suggestion}: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}) / {drop_suggestion}: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']})")
+        print(f"{i+1}) {add_suggestion}: {add_player['Player']}, {add_player['Position']}, {add_player['Team']}, {int(add_player['Age'])}yo (Trade Value {add_player['avg_value']}, VORP {add_player['VORP']}, Redraft {add_player['Rk']}) / {drop_suggestion}: {drop_player['Player']}, {drop_player['Position']}, {drop_player['Team']}, {int(drop_player['Age'])}yo (Trade Value {drop_player['avg_value']}, VORP {drop_player['VORP']}, Redraft {drop_player['Rk']})")
         any_valid_overall_recommendations = True
     
     if not any_valid_overall_recommendations:
@@ -550,7 +572,8 @@ for pos in bottom_roster_players['Position'].unique():
                             'Team': roster_player['Team'],
                             'Age': roster_player['Age'],
                             'avg_value': roster_player['avg_value'],
-                            'VORP': roster_player['VORP']
+                            'VORP': roster_player['VORP'],
+                            'Rk': roster_player['Rk']
                         },
                         'add_candidates': []
                     }
@@ -560,7 +583,8 @@ for pos in bottom_roster_players['Position'].unique():
                     'Team': free_agent['Team'],
                     'Age': free_agent['Age'],
                     'avg_value': free_agent['avg_value'],
-                    'VORP': free_agent_vorp.get(free_agent['Player'], 0)
+                    'VORP': free_agent_vorp.get(free_agent['Player'], 0),
+                    'Rk': free_agent['Rk']
                 })
 
 # Output position-based recommendations
@@ -588,9 +612,9 @@ if position_based_recommendations:
         
         if valid_add_candidates:
             any_valid_position_based_recommendations = True
-            print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']})")
+            print(f"\nDrop: {drop_info['Player']}, {drop_info['Position']}, {drop_info['Team']}, {int(drop_info['Age'])}yo (Trade Value {drop_info['avg_value']}, VORP {drop_info['VORP']}, Redraft {drop_info['Rk']})")
             for i, add_candidate, add_suggestion in valid_add_candidates:
-                print(f"    {i}) {add_suggestion}: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']})")
+                print(f"    {i}) {add_suggestion}: {add_candidate['Player']}, {add_candidate['Position']}, {add_candidate['Team']}, {int(add_candidate['Age'])}yo (Trade Value {add_candidate['avg_value']}, VORP {add_candidate['VORP']}, Redraft {add_candidate['Rk']})")
     
     if not any_valid_position_based_recommendations:
         if not recommend_maybe:
