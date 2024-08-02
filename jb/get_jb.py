@@ -171,14 +171,14 @@ def get_jb_redraft():
         # save outfiles
         redraft_rankings_df = df
 
-        redraft_rankings_df.to_csv(f"jb/outfiles/redraft/players_{filename_prefix}_{datetime_value}.csv", index=False)
+        redraft_rankings_df.to_csv(f"jb/outfiles/redraft/players_redraft_rankings_{datetime_value}.csv", index=False)
 
 
-        return datetime_value, filename_prefix, redraft_rankings_df
+        return redraft_rankings_df
 
     # Get most recent redraft rankgs
     url = "https://www.thescore.com/nflfan/news/2817340/fantasy-2024-rankings-top-250-updated"
-    datetime_value, filename_prefix, redraft_rankings_df = fetch_redraft_tables(url)
+    redraft_rankings_df = fetch_redraft_tables(url)
     print("Finished scraping Justin Boone redraft trade values")
 
     # need to stack the dfs all into one and adjust JB pick value/names, then make normalized values, then value checker for buys and sells
