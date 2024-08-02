@@ -44,7 +44,8 @@ print(f"Running process for {league_name}")
 
 if offline:
     print("Running in offline mode using most recently downloaded rankings.")
-    jb_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/"))
+    jb_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/dynasty/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/dynasty"))
+    jb_redraft_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft"))
     ktc_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"))
 else:
     jb_df = get_jb_trade_values()
