@@ -1,0 +1,391 @@
+Player,Matched_Player_Name,Position,Team,Age,JB Trade Value,KTC Trade Value,JB_normalized,KTC_normalized,Value_Difference,weighted_avg_trade_value,BestMatch,free_agent_indicator,rostered_indicator
+CeeDee Lamb,CeeDee Lamb,WR,DAL,25.0,77,9979,100,99,1,100.0,,0,0
+Justin Jefferson,Justin Jefferson,WR,MIN,25.0,76,9993,98,100,-2,99.0,Justin Jefferson,0,1
+Ja'Marr Chase,Ja'Marr Chase,WR,CIN,24.0,75,9970,97,99,-2,98.0,,0,0
+Amon-Ra St. Brown,Amon-Ra St. Brown,WR,DET,24.0,72,9430,93,94,-1,93.0,,0,0
+Garrett Wilson,Garrett Wilson,WR,NYJ,24.0,71,7982,92,79,13,88.0,Garrett Wilson,0,1
+Puka Nacua,Puka Nacua,WR,LAR,23.0,70,7914,90,79,11,86.0,,0,0
+Bijan Robinson,Bijan Robinson,RB,ATL,22.0,69,9620,89,96,-7,91.0,,0,0
+Marvin Harrison Jr.,Marvin Harrison Jr.,WR,ARI,22.0,69,9029,89,90,-1,89.0,,0,0
+Breece Hall,Breece Hall,RB,NYJ,23.0,68,8837,88,88,0,88.0,,0,0
+Josh Allen,Josh Allen,QB,BUF,28.0,64,7691,83,76,7,81.0,Josh Allen,0,1
+Malik Nabers,Malik Nabers,WR,NYG,21.0,63,7761,81,77,4,80.0,,0,0
+Jahmyr Gibbs,Jahmyr Gibbs,RB,DET,22.0,63,8323,81,83,-2,82.0,,0,0
+Patrick Mahomes II,Patrick Mahomes,QB,KCC,28.0,62,7656,80,76,4,79.0,,0,0
+Tyreek Hill,Tyreek Hill,WR,MIA,30.0,61,7207,79,71,8,76.0,,0,0
+A.J. Brown,A.J. Brown,WR,PHI,27.0,61,7724,79,77,2,78.0,,0,0
+Christian McCaffrey,Christian McCaffrey,RB,SFO,28.0,61,8087,79,80,-1,79.0,,0,0
+Jonathan Taylor,Jonathan Taylor,RB,IND,25.0,60,7060,77,70,7,75.0,,0,0
+Drake London,Drake London,WR,ATL,23.0,59,6962,76,69,7,74.0,,0,0
+Brandon Aiyuk,Brandon Aiyuk,WR,SFO,26.0,59,6694,76,66,10,73.0,,0,0
+Jaylen Waddle,Jaylen Waddle,WR,MIA,25.0,58,7073,75,70,5,73.0,,0,0
+Chris Olave,Chris Olave,WR,NOS,24.0,58,6986,75,69,6,73.0,,0,0
+C.J. Stroud,C.J. Stroud,QB,HOU,22.0,58,6869,75,68,7,73.0,,0,0
+Nico Collins,Nico Collins,WR,HOU,25.0,57,6692,74,66,8,71.0,,0,0
+DK Metcalf,DK Metcalf,WR,SEA,26.0,55,6296,71,62,9,68.0,,0,0
+De'Von Achane,De'Von Achane,RB,MIA,22.0,55,6685,71,66,5,69.0,De'Von Achane,0,1
+Jalen Hurts,Jalen Hurts,QB,PHI,26.0,55,6715,71,66,5,69.0,,0,0
+DeVonta Smith,DeVonta Smith,WR,PHI,25.0,54,6679,70,66,4,69.0,,0,0
+Lamar Jackson,Lamar Jackson,QB,BAL,27.0,54,6900,70,68,2,69.0,,0,0
+DJ Moore,D.J. Moore,WR,CHI,27.0,52,6361,67,63,4,66.0,,0,0
+George Pickens,George Pickens,WR,PIT,23.0,51,6131,66,60,6,64.0,,0,0
+Travis Etienne Jr.,Travis Etienne,RB,JAC,25.0,50,6526,64,64,0,64.0,Travis Etienne Jr.,0,1
+Anthony Richardson,Anthony Richardson,QB,IND,22.0,49,6606,63,65,-2,64.0,,0,0
+Tank Dell,Tank Dell,WR,HOU,24.0,49,6087,63,60,3,62.0,,0,0
+Rome Odunze,Rome Odunze,WR,CHI,22.0,48,6723,62,66,-4,63.0,,0,0
+Joe Burrow,Joe Burrow,QB,CIN,27.0,47,6140,61,61,0,61.0,,0,0
+Saquon Barkley,Saquon Barkley,RB,PHI,27.0,47,6127,61,60,1,61.0,Saquon Barkley,0,1
+Kyren Williams,Kyren Williams,RB,LAR,23.0,46,6201,59,61,-2,60.0,,0,0
+Rashee Rice,Rashee Rice,WR,KCC,24.0,45,5245,58,52,6,56.0,,0,0
+Sam LaPorta,Sam LaPorta,TE,DET,23.0,45,7539,58,75,-17,64.0,,0,0
+Kenneth Walker III,Kenneth Walker III,RB,SEA,23.0,45,5812,58,57,1,58.0,,0,0
+Tee Higgins,Tee Higgins,WR,CIN,25.0,45,5920,58,58,0,58.0,Tee Higgins,0,1
+Xavier Worthy,Xavier Worthy,WR,KCC,21.0,44,5500,57,54,3,56.0,,0,0
+Jaxon Smith-Njigba,Jaxon Smith-Njigba,WR,SEA,22.0,44,5797,57,57,0,57.0,,0,0
+Zay Flowers,Zay Flowers,WR,BAL,23.0,44,6036,57,60,-3,58.0,,0,0
+Michael Pittman Jr.,Michael Pittman,WR,IND,26.0,43,6241,55,62,-7,57.0,,0,0
+James Cook,James Cook,RB,BUF,24.0,43,5633,55,55,0,55.0,,0,0
+Caleb Williams,Caleb Williams,QB,CHI,22.0,43,6016,55,59,-4,56.0,,0,0
+Kyler Murray,Kyler Murray,QB,ARI,27.0,42,5632,54,55,-1,54.0,,0,0
+Dalton Kincaid,Dalton Kincaid,TE,BUF,24.0,41,6293,53,62,-9,56.0,,0,0
+Deebo Samuel Sr.,Deebo Samuel,WR,SFO,28.0,41,5579,53,55,-2,54.0,,0,0
+Isiah Pacheco,Isiah Pacheco,RB,KCC,25.0,41,5873,53,58,-5,55.0,,0,0
+Trey McBride,Trey McBride,TE,ARI,24.0,40,6460,51,64,-13,55.0,Trey McBride,0,1
+Jonathon Brooks,Jonathon Brooks,RB,CAR,21.0,40,5950,51,59,-8,54.0,,0,0
+Justin Herbert,Justin Herbert,QB,LAC,26.0,40,5585,51,55,-4,52.0,,0,0
+Mark Andrews,Mark Andrews,TE,BAL,28.0,39,5827,50,57,-7,52.0,,0,0
+Davante Adams,Davante Adams,WR,LVR,31.0,39,5087,50,50,0,50.0,,0,0
+Jayden Reed,Jayden Reed,WR,GBP,24.0,39,5365,50,53,-3,51.0,,0,0
+Mike Evans,Mike Evans,WR,TBB,31.0,39,5173,50,51,-1,50.0,,0,0
+Christian Kirk,Christian Kirk,WR,JAC,27.0,38,4690,49,46,3,48.0,,0,0
+Brock Bowers,Brock Bowers,TE,LVR,21.0,38,6154,49,61,-12,53.0,,0,0
+Kyle Pitts,Kyle Pitts,TE,ATL,23.0,38,6115,49,60,-11,53.0,,0,0
+Brian Thomas Jr.,Brian Thomas Jr.,WR,JAC,21.0,38,5513,49,54,-5,51.0,,1,0
+Ladd McConkey,Ladd McConkey,WR,LAC,22.0,37,5493,48,54,-6,50.0,,0,0
+Josh Jacobs,Josh Jacobs,RB,GBP,26.0,37,5123,48,50,-2,49.0,,0,0
+Stefon Diggs,Stefon Diggs,WR,HOU,30.0,37,4431,48,43,5,46.0,,0,0
+Jordan Addison,Jordan Addison,WR,MIN,22.0,36,5414,46,53,-7,48.0,,0,0
+Rachaad White,Rachaad White,RB,TBB,25.0,36,5340,46,53,-7,48.0,,0,0
+Amari Cooper,Amari Cooper,WR,CLE,30.0,36,4519,46,44,2,45.0,,0,0
+Cooper Kupp,Cooper Kupp,WR,LAR,31.0,36,4750,46,47,-1,46.0,,0,0
+Terry McLaurin,Terry McLaurin,WR,WAS,28.0,36,4649,46,46,0,46.0,,0,0
+Chris Godwin,Chris Godwin,WR,TBB,28.0,35,4536,45,44,1,45.0,,0,0
+Jordan Love,Jordan Love,QB,GBP,25.0,35,5799,45,57,-12,49.0,,0,0
+T.J. Hockenson,T.J. Hockenson,TE,MIN,27.0,35,5331,45,52,-7,47.0,,0,0
+Keon Coleman,Keon Coleman,WR,BUF,21.0,34,5250,44,52,-8,47.0,,0,0
+Ricky Pearsall,Ricky Pearsall,WR,SFO,23.0,34,4443,44,43,1,44.0,,0,0
+Trey Benson,Trey Benson,RB,ARI,22.0,34,5135,44,50,-6,46.0,,0,0
+Travis Kelce,Travis Kelce,TE,KCC,34.0,33,5124,42,50,-8,45.0,,0,0
+D'Andre Swift,D'Andre Swift,RB,CHI,25.0,33,4468,42,44,-2,43.0,,0,0
+Christian Watson,Christian Watson,WR,GBP,25.0,33,4560,42,45,-3,43.0,,0,0
+Derrick Henry,Derrick Henry,RB,BAL,30.0,32,4669,41,46,-5,43.0,,0,0
+Alvin Kamara,Alvin Kamara,RB,NOS,29.0,32,4087,41,40,1,41.0,,0,0
+Joe Mixon,Joe Mixon,RB,HOU,28.0,32,4299,41,42,-1,41.0,,0,0
+Calvin Ridley,Calvin Ridley,WR,TEN,29.0,32,4038,41,39,2,40.0,,0,0
+Rhamondre Stevenson,Rhamondre Stevenson,RB,NEP,26.0,31,4674,40,46,-6,42.0,,0,0
+George Kittle,George Kittle,TE,SFO,30.0,31,4555,40,45,-5,42.0,,0,0
+Tyjae Spears,Tyjae Spears,RB,TEN,23.0,31,4463,40,44,-4,41.0,,0,0
+David Montgomery,David Montgomery,RB,DET,27.0,30,4297,38,42,-4,39.0,,0,0
+Jayden Daniels,Jayden Daniels,QB,WAS,23.0,30,5405,38,53,-15,43.0,,0,0
+Brian Robinson Jr.,Brian Robinson,RB,WAS,25.0,30,4007,38,39,-1,38.0,,0,0
+Najee Harris,Najee Harris,RB,PIT,26.0,29,4056,37,40,-3,38.0,,0,0
+Javonte Williams,Javonte Williams,RB,DEN,24.0,29,3936,37,38,-1,37.0,,0,0
+Brock Purdy,Brock Purdy,QB,SFO,24.0,29,4424,37,43,-6,39.0,,0,0
+Dak Prescott,Dak Prescott,QB,DAL,31.0,29,4313,37,42,-5,39.0,,0,0
+Adonai Mitchell,Adonai Mitchell,WR,IND,21.0,29,4232,37,41,-4,38.0,,0,0
+Diontae Johnson,Diontae Johnson,WR,CAR,28.0,29,4386,37,43,-6,39.0,,0,0
+Evan Engram,Evan Engram,TE,JAC,29.0,28,4104,36,40,-4,37.0,,0,0
+Tony Pollard,Tony Pollard,RB,TEN,27.0,28,3726,36,36,0,36.0,,0,0
+Trevor Lawrence,Trevor Lawrence,QB,JAC,24.0,28,4596,36,45,-9,39.0,,0,0
+Jaylen Warren,Jaylen Warren,RB,PIT,25.0,27,4324,35,42,-7,37.0,,0,0
+Aaron Jones,Aaron Jones,RB,MIN,29.0,27,3655,35,35,0,35.0,,0,0
+Chase Brown,Chase Brown,RB,CIN,24.0,27,3927,35,38,-3,36.0,,0,0
+Zamir White,Zamir White,RB,LVR,24.0,27,4308,35,42,-7,37.0,,0,0
+Ja'Lynn Polk,Ja'Lynn Polk,WR,NEP,22.0,27,3962,35,39,-4,36.0,,0,0
+MarShawn Lloyd,MarShawn Lloyd,RB,GBP,23.0,26,3806,33,37,-4,34.0,,0,0
+Keenan Allen,Keenan Allen,WR,CHI,32.0,26,3863,33,38,-5,35.0,,0,0
+Xavier Legette,Xavier Legette,WR,CAR,23.0,26,4347,33,42,-9,36.0,,0,0
+Zach Charbonnet,Zach Charbonnet,RB,SEA,23.0,26,3803,33,37,-4,34.0,,0,0
+Jameson Williams,Jameson Williams,WR,DET,23.0,25,4116,32,40,-8,35.0,,0,0
+Tua Tagovailoa,Tua Tagovailoa,QB,MIA,26.0,25,4364,32,43,-11,36.0,,0,0
+David Njoku,David Njoku,TE,CLE,28.0,25,3947,32,38,-6,34.0,,0,0
+Jermaine Burton,Jermaine Burton,WR,CIN,23.0,25,3547,32,34,-2,33.0,Jermaine Burton,0,1
+Blake Corum,Blake Corum,RB,LAR,23.0,25,4212,32,41,-9,35.0,,0,0
+James Conner,James Conner,RB,ARI,29.0,24,3616,31,35,-4,32.0,,0,0
+Zack Moss,Zack Moss,RB,CIN,26.0,24,3486,31,34,-3,32.0,Zack Moss,0,1
+Romeo Doubs,Romeo Doubs,WR,GBP,24.0,24,3798,31,37,-6,33.0,,0,0
+Jakobi Meyers,Jakobi Meyers,WR,LVR,27.0,24,3091,31,30,1,31.0,,0,0
+Jaylen Wright,Jaylen Wright,RB,MIA,21.0,24,3644,31,35,-4,32.0,,0,0
+Josh Downs,Josh Downs,WR,IND,23.0,23,3708,29,36,-7,31.0,,0,0
+Nick Chubb,Nick Chubb,RB,CLE,28.0,23,3595,29,35,-6,31.0,Nick Chubb,0,1
+Dontayvion Wicks,Dontayvion Wicks,WR,GBP,23.0,23,3776,29,37,-8,32.0,,0,0
+Mike Williams,Mike Williams,WR,NYJ,29.0,22,2352,28,22,6,26.0,,0,0
+Curtis Samuel,Curtis Samuel,WR,BUF,28.0,22,3108,28,30,-2,29.0,,0,0
+Devin Singletary,Devin Singletary,RB,NYG,26.0,22,3383,28,33,-5,30.0,,0,0
+Raheem Mostert,Raheem Mostert,RB,MIA,32.0,22,3256,28,31,-3,29.0,,0,0
+Kendre Miller,Kendre Miller,RB,NOS,22.0,22,3292,28,32,-4,29.0,,0,0
+Courtland Sutton,Courtland Sutton,WR,DEN,28.0,22,3300,28,32,-4,29.0,,0,0
+Rashid Shaheed,Rashid Shaheed,WR,NOS,25.0,22,3278,28,32,-4,29.0,,0,0
+Jahan Dotson,Jahan Dotson,WR,WAS,24.0,21,3483,27,34,-7,29.0,Jahan Dotson,0,1
+Jerry Jeudy,Jerry Jeudy,WR,CLE,25.0,21,3356,27,32,-5,29.0,,0,0
+DeAndre Hopkins,DeAndre Hopkins,WR,TEN,32.0,21,3010,27,29,-2,28.0,,0,0
+Jerome Ford,Jerome Ford,RB,CLE,24.0,21,3485,27,34,-7,29.0,,0,0
+Ty Chandler,Ty Chandler,RB,MIN,26.0,20,2381,25,23,2,24.0,,0,0
+Jake Ferguson,Jake Ferguson,TE,DAL,25.0,20,4193,25,41,-16,30.0,Jake Ferguson,0,1
+Brandin Cooks,Brandin Cooks,WR,DAL,30.0,20,2029,25,19,6,23.0,,0,0
+Khalil Shakir,Khalil Shakir,WR,BUF,24.0,20,3484,25,34,-9,28.0,,0,0
+Marvin Mims Jr.,Marvin Mims,WR,DEN,22.0,20,2991,25,29,-4,26.0,,0,0
+Gus Edwards,Gus Edwards,RB,LAC,29.0,19,2742,24,26,-2,25.0,Gus Edwards,0,1
+J.J. McCarthy,J.J. McCarthy,QB,MIN,21.0,19,3512,24,34,-10,27.0,,0,0
+Rashod Bateman,Rashod Bateman,WR,BAL,24.0,19,2655,24,25,-1,24.0,,0,0
+Jaleel McLaughlin,Jaleel McLaughlin,RB,DEN,23.0,18,2980,23,29,-6,25.0,,0,0
+Drake Maye,Drake Maye,QB,NEP,21.0,18,3775,23,37,-14,28.0,,0,0
+Jalen McMillan,Jalen McMillan,WR,TBB,22.0,17,2999,22,29,-7,24.0,,0,0
+Tyler Lockett,Tyler Lockett,WR,SEA,31.0,17,2663,22,25,-3,23.0,,0,0
+Austin Ekeler,Austin Ekeler,RB,WAS,29.0,17,2646,22,25,-3,23.0,,0,0
+Luke Musgrave,Luke Musgrave,TE,GBP,23.0,17,3352,22,32,-10,25.0,,0,0
+Jared Goff,Jared Goff,QB,DET,29.0,17,3846,22,37,-15,27.0,,0,0
+Javon Baker,Javon Baker,WR,NEP,22.0,16,3004,20,29,-9,23.0,,0,0
+Ben Sinnott,Ben Sinnott,TE,WAS,22.0,16,3349,20,32,-12,24.0,,0,0
+Pat Freiermuth,Pat Freiermuth,TE,PIT,25.0,16,3614,20,35,-15,25.0,,0,0
+Bryce Young,Bryce Young,QB,CAR,23.0,16,3364,20,33,-13,24.0,,0,0
+Roschon Johnson,Roschon Johnson,RB,CHI,23.0,16,2720,20,26,-6,22.0,,0,0
+Deshaun Watson,Deshaun Watson,QB,CLE,28.0,15,2849,19,27,-8,22.0,,0,0
+Braelon Allen,Braelon Allen,RB,NYJ,20.0,15,2695,19,26,-7,21.0,Braelon Allen,0,1
+Ray Davis,Ray Davis,RB,BUF,24.0,15,2625,19,25,-6,21.0,Ray Davis,0,1
+Joshua Palmer,Josh Palmer,WR,LAC,24.0,15,3305,19,32,-13,23.0,,0,0
+Malachi Corley,Malachi Corley,WR,NYJ,22.0,15,2778,19,27,-8,22.0,,0,0
+Cole Kmet,Cole Kmet,TE,CHI,25.0,15,3259,19,31,-12,23.0,,0,0
+Dallas Goedert,Dallas Goedert,TE,PHI,29.0,15,3217,19,31,-12,23.0,Dallas Goedert,0,1
+Roman Wilson,Roman Wilson,WR,PIT,23.0,14,3470,18,34,-16,23.0,,0,0
+Dalton Schultz,Dalton Schultz,TE,HOU,28.0,14,3207,18,31,-13,22.0,,0,0
+Rico Dowdle,Rico Dowdle,RB,DAL,26.0,14,2457,18,23,-5,20.0,Rico Dowdle,0,1
+Kimani Vidal,Kimani Vidal,RB,LAC,22.0,14,2833,18,27,-9,21.0,,0,0
+Darnell Mooney,Darnell Mooney,WR,ATL,26.0,13,2387,16,23,-7,18.0,,0,0
+Antonio Gibson,Antonio Gibson,RB,NEP,26.0,13,2275,16,22,-6,18.0,,0,0
+Isaiah Likely,Isaiah Likely,TE,BAL,24.0,13,3233,16,31,-15,21.0,,0,0
+Michael Wilson,Michael Wilson,WR,ARI,24.0,13,3049,16,29,-13,20.0,,0,0
+Geno Smith,Geno Smith,QB,SEA,33.0,13,1967,16,18,-2,17.0,Geno Smith,0,1
+Tyler Allgeier,Tyler Allgeier,RB,ATL,24.0,13,2748,16,26,-10,19.0,,0,0
+Baker Mayfield,Baker Mayfield,QB,TBB,29.0,12,2707,15,26,-11,19.0,,0,0
+Tyrone Tracy Jr.,Tyrone Tracy,RB,NYG,24.0,12,2373,15,23,-8,18.0,,0,0
+Audric Estime,Audric Estime,RB,DEN,20.0,12,2965,15,29,-14,20.0,,0,0
+Bucky Irving,Bucky Irving,RB,TBB,22.0,12,2686,15,26,-11,19.0,,0,0
+Will Shipley,Will Shipley,RB,PHI,21.0,12,2362,15,22,-7,17.0,,0,0
+Cade Otton,Cade Otton,TE,TBB,25.0,12,2233,15,21,-6,17.0,,0,0
+DeMario Douglas,Demario Douglas,WR,NEP,23.0,11,2979,14,29,-15,19.0,,0,0
+Demarcus Robinson,Demarcus Robinson,WR,LAR,29.0,11,1401,14,13,1,14.0,,0,0
+Keaton Mitchell,Keaton Mitchell,RB,BAL,22.0,11,2864,14,27,-13,18.0,,0,0
+Jalin Hyatt,Jalin Hyatt,WR,NYG,22.0,11,2403,14,23,-9,17.0,,0,0
+Michael Mayer,Michael Mayer,TE,LVR,23.0,10,2809,12,27,-15,17.0,,0,0
+Kirk Cousins,Kirk Cousins,QB,ATL,36.0,10,2908,12,28,-16,17.0,,0,0
+Andrei Iosivas,Andrei Iosivas,WR,CIN,24.0,10,1697,12,16,-4,13.0,,1,0
+Jonathan Mingo,Jonathan Mingo,WR,CAR,23.0,10,2028,12,19,-7,14.0,,0,0
+Ezekiel Elliott,Ezekiel Elliott,RB,DAL,29.0,10,2181,12,21,-9,15.0,,0,0
+Chuba Hubbard,Chuba Hubbard,RB,CAR,25.0,10,2399,12,23,-11,16.0,,0,0
+Khalil Herbert,Khalil Herbert,RB,CHI,26.0,10,2223,12,21,-9,15.0,,0,0
+Dameon Pierce,Dameon Pierce,RB,HOU,24.0,10,2254,12,21,-9,15.0,,0,0
+J.K. Dobbins,J.K. Dobbins,RB,LAC,25.0,10,2553,12,24,-12,16.0,,0,0
+Tank Bigsby,Tank Bigsby,RB,JAC,22.0,10,2259,12,21,-9,15.0,Tank Bigsby,0,1
+Elijah Mitchell,Elijah Mitchell,RB,SFO,26.0,9,1990,11,19,-8,14.0,,0,0
+Ja'Tavion Sanders,Ja'Tavion Sanders,TE,CAR,21.0,9,2475,11,24,-13,15.0,,0,0
+Matthew Stafford,Matthew Stafford,QB,LAR,36.0,9,2714,11,26,-15,16.0,,0,0
+Troy Franklin,Troy Franklin,WR,DEN,21.0,9,3347,11,32,-21,18.0,,0,0
+Wan'Dale Robinson,Wan'Dale Robinson,WR,NYG,23.0,9,2480,11,24,-13,15.0,,0,0
+Isaac Guerendo,Isaac Guerendo,RB,SFO,24.0,9,1736,11,16,-5,13.0,,0,0
+Jordan Mason,Jordan Mason,RB,SFO,25.0,9,1159,11,10,1,11.0,,1,0
+Deneric Prince,Deneric Prince,RB,KCC,24.0,9,1386,11,13,-2,12.0,Deneric Prince,0,1
+Dylan Laube,Dylan Laube,RB,LVR,24.0,9,1957,11,18,-7,13.0,,0,0
+Luke McCaffrey,Luke McCaffrey,WR,WAS,23.0,8,2708,10,26,-16,15.0,,0,0
+Greg Dortch,Greg Dortch,WR,ARI,26.0,8,1867,10,17,-7,12.0,,0,0
+Devontez Walker,Devontez Walker,WR,BAL,23.0,8,2007,10,19,-9,13.0,,0,0
+Malik Washington,Malik Washington,WR,MIA,23.0,8,2008,10,19,-9,13.0,,0,0
+Noah Fant,Noah Fant,TE,SEA,26.0,8,2068,10,19,-9,13.0,,0,0
+Treylon Burks,Treylon Burks,WR,TEN,24.0,8,1672,10,15,-5,12.0,Treylon Burks,0,1
+Will Levis,Will Levis,QB,TEN,25.0,7,3082,9,30,-21,16.0,,0,0
+Theo Johnson,Theo Johnson,TE,NYG,23.0,7,2069,9,19,-10,12.0,,0,0
+Erick All Jr.,Erick All,TE,CIN,23.0,7,1664,9,15,-6,11.0,,1,0
+Trey Sermon,Trey Sermon,RB,IND,25.0,7,1629,9,15,-6,11.0,,1,0
+Bo Nix,Bo Nix,QB,DEN,24.0,7,2762,9,26,-17,15.0,,0,0
+Jacob Cowing,Jacob Cowing,WR,SFO,23.0,7,1476,9,13,-4,10.0,,1,0
+Tyler Conklin,Tyler Conklin,TE,NYJ,29.0,6,1505,7,14,-7,9.0,,0,0
+Chigoziem Okonkwo,Chigoziem Okonkwo,TE,TEN,24.0,6,2258,7,21,-14,12.0,,0,0
+Adam Thielen,Adam Thielen,WR,CAR,34.0,6,1609,7,15,-8,10.0,,0,0
+Hunter Henry,Hunter Henry,TE,NEP,29.0,6,1728,7,16,-9,10.0,,0,0
+Jared Wiley,Jared Wiley,TE,KCC,23.0,5,1351,6,12,-6,8.0,,1,0
+Juwan Johnson,Juwan Johnson,TE,NOS,27.0,5,1527,6,14,-8,9.0,,0,0
+Tucker Kraft,Tucker Kraft,TE,GBP,23.0,5,2353,6,22,-16,11.0,,0,0
+Jordan Whittington,Jordan Whittington,WR,LAR,23.0,5,1172,6,10,-4,7.0,,1,0
+Michael Penix Jr.,Michael Penix Jr.,QB,ATL,24.0,5,2861,6,27,-21,13.0,,0,0
+Aaron Rodgers,Aaron Rodgers,QB,NYJ,40.0,5,2311,6,22,-16,11.0,Aaron Rodgers,0,1
+Johnny Wilson,Johnny Wilson,WR,PHI,23.0,5,1333,6,12,-6,8.0,,1,0
+Cedric Tillman,Cedric Tillman,WR,CLE,24.0,5,1680,6,16,-10,9.0,,0,0
+Parker Washington,Parker Washington,WR,JAC,22.0,5,1438,6,13,-7,8.0,,0,0
+Tre Tucker,Tre Tucker,WR,LVR,23.0,5,1420,6,13,-7,8.0,,0,0
+Michael Thomas,Michael Thomas,WR,FA,31.0,5,121,6,0,6,4.0,,0,0
+Odell Beckham Jr.,Odell Beckham,WR,MIA,31.0,5,846,6,7,-1,6.0,,0,0
+Jalen Tolbert,Jalen Tolbert,WR,DAL,25.0,5,1621,6,15,-9,9.0,,1,0
+Xavier Gipson,Xavier Gipson,WR,NYJ,23.0,5,1429,6,13,-7,8.0,,1,0
+Miles Sanders,Miles Sanders,RB,CAR,27.0,5,1239,6,11,-5,8.0,,1,0
+Jawhar Jordan,Jawhar Jordan,RB,HOU,25.0,5,672,6,5,1,6.0,,1,0
+Rasheen Ali,Rasheen Ali,RB,BAL,23.0,5,1726,6,16,-10,9.0,,1,0
+D'Onta Foreman,D'Onta Foreman,RB,CLE,28.0,5,1163,6,10,-4,7.0,,1,0
+Justice Hill,Justice Hill,RB,BAL,26.0,5,1420,6,13,-7,8.0,,1,0
+Elijah Moore,Elijah Moore,WR,CLE,24.0,4,1966,5,18,-13,9.0,,1,0
+Clyde Edwards-Helaire,Clyde Edwards-Helaire,RB,KCC,25.0,4,1401,5,13,-8,8.0,,0,0
+Kenneth Gainwell,Kenneth Gainwell,RB,PHI,25.0,4,1449,5,13,-8,8.0,,0,0
+Sione Vaki,Sione Vaki,RB,DET,23.0,4,924,5,8,-3,6.0,,1,0
+Daniel Jones,Daniel Jones,QB,NYG,27.0,4,2037,5,19,-14,10.0,,0,0
+Quentin Johnston,Quentin Johnston,WR,LAC,22.0,4,2568,5,25,-20,12.0,,0,0
+Jelani Woods,Jelani Woods,TE,IND,25.0,4,1657,5,15,-10,8.0,,0,0
+DJ Chark Jr.,D.J. Chark,WR,LAC,27.0,3,1735,3,16,-13,7.0,,0,0
+Russell Wilson,Russell Wilson,QB,PIT,35.0,3,1626,3,15,-12,7.0,,0,0
+Justin Fields,Justin Fields,QB,PIT,25.0,3,2614,3,25,-22,10.0,,0,0
+Trey Palmer,Trey Palmer,WR,TBB,23.0,3,2008,3,19,-16,8.0,,1,0
+Cade Stover,Cade Stover,TE,HOU,24.0,3,1436,3,13,-10,6.0,,1,0
+Taysom Hill,Taysom Hill,TE,NOS,34.0,3,1342,3,12,-9,6.0,,0,0
+Jonnu Smith,Jonnu Smith,TE,MIA,29.0,3,1374,3,12,-9,6.0,,0,0
+AJ Dillon,AJ Dillon,RB,GBP,26.0,3,1608,3,15,-12,7.0,,0,0
+Chris Rodriguez Jr.,Chris Rodriguez,RB,WAS,23.0,3,1431,3,13,-10,6.0,,1,0
+Alexander Mattison,Alexander Mattison,RB,LVR,26.0,3,1493,3,14,-11,7.0,,0,0
+Greg Dulcich,Greg Dulcich,TE,DEN,24.0,3,2273,3,22,-19,9.0,,1,0
+Mike Gesicki,Mike Gesicki,TE,CIN,28.0,3,1535,3,14,-11,7.0,,0,0
+Colby Parkinson,Colby Parkinson,TE,LAR,25.0,3,1498,3,14,-11,7.0,,1,0
+A.T. Perry,A.T. Perry,WR,NOS,24.0,2,1764,2,16,-14,7.0,,1,0
+Tyler Boyd,Tyler Boyd,WR,TEN,29.0,2,1699,2,16,-14,7.0,,1,0
+Calvin Austin III,Calvin Austin III,WR,PIT,25.0,2,1465,2,13,-11,6.0,,1,0
+Bo Melton,Bo Melton,WR,GBP,25.0,2,1406,2,13,-11,6.0,,1,0
+Derek Carr,Derek Carr,QB,NOS,33.0,2,1569,2,14,-12,6.0,,0,0
+Blake Watson,Blake Watson,RB,DEN,24.0,2,1103,2,10,-8,5.0,,1,0
+Parris Campbell,Parris Campbell,WR,PHI,27.0,2,792,2,7,-5,4.0,,1,0
+Ainias Smith,Ainias Smith,WR,PHI,23.0,2,1201,2,11,-9,5.0,,1,0
+Eric Gray,Eric Gray,RB,NYG,24.0,2,1257,2,11,-9,5.0,,1,0
+Alec Pierce,Alec Pierce,WR,IND,24.0,2,1687,2,16,-14,7.0,,1,0
+Tyler Higbee,Tyler Higbee,TE,LAR,31.0,2,1178,2,10,-8,5.0,,1,0
+Zach Ertz,Zach Ertz,TE,WAS,33.0,2,766,2,6,-4,3.0,,0,0
+Lucas Krull,Lucas Krull,TE,DEN,26.0,2,231,2,1,1,2.0,,1,0
+Jeremy Ruckert,Jeremy Ruckert,TE,NYJ,24.0,2,702,2,6,-4,3.0,,1,0
+Hayden Hurst,Hayden Hurst,TE,LAC,30.0,2,928,2,8,-6,4.0,,1,0
+Daniel Bellinger,Daniel Bellinger,TE,NYG,23.0,2,1697,2,16,-14,7.0,,1,0
+Dawson Knox,Dawson Knox,TE,BUF,27.0,2,1826,2,17,-15,7.0,,1,0
+Darius Slayton,Darius Slayton,WR,NYG,27.0,1,1375,1,12,-11,5.0,,0,0
+Jalen Nailor,Jalen Nailor,WR,MIN,25.0,1,765,1,6,-5,3.0,,1,0
+Kalif Raymond,Kalif Raymond,WR,DET,30.0,1,601,1,5,-4,2.0,,0,0
+Van Jefferson,Van Jefferson,WR,PIT,28.0,1,990,1,9,-8,4.0,,1,0
+Brenden Rice,Brenden Rice,WR,LAC,22.0,1,1817,1,17,-16,6.0,,0,0
+Will Dissly,Will Dissly,TE,LAC,28.0,1,788,1,7,-6,3.0,,1,0
+Ryan Flournoy,Ryan Flournoy,WR,DAL,24.0,1,759,1,6,-5,3.0,,1,0
+Josh Reynolds,Josh Reynolds,WR,DEN,29.0,1,1217,1,11,-10,4.0,,0,0
+Kadarius Toney,Kadarius Toney,WR,KCC,25.0,1,938,1,8,-7,3.0,,0,0
+K.J. Osborn,K.J. Osborn,WR,NEP,27.0,1,1384,1,13,-12,5.0,,1,0
+Tim Patrick,Tim Patrick,WR,DEN,30.0,1,514,1,4,-3,2.0,,1,0
+Donald Parham Jr.,Donald Parham,TE,LAC,27.0,1,904,1,8,-7,3.0,,1,0
+Noah Gray,Noah Gray,TE,KCC,25.0,1,1260,1,11,-10,4.0,,0,0
+Tip Reiman,Tip Reiman,TE,ARI,22.0,1,489,1,4,-3,2.0,,1,0
+AJ Barner,AJ Barner,TE,SEA,22.0,1,574,1,4,-3,2.0,,1,0
+Davis Allen,Davis Allen,TE,LAR,23.0,1,1144,1,10,-9,4.0,,1,0
+Will Mallory,Will Mallory,TE,IND,25.0,1,407,1,3,-2,2.0,,1,0
+Brenton Strange,Brenton Strange,TE,JAC,23.0,1,826,1,7,-6,3.0,,1,0
+Noah Brown,Noah Brown,WR,HOU,27.0,1,1238,1,11,-10,4.0,,1,0
+Aidan O'Connell,Aidan O'Connell,QB,LVR,25.0,1,1429,1,13,-12,5.0,,1,0
+Jamari Thrash,Jamari Thrash,WR,CLE,23.0,1,860,1,7,-6,3.0,,1,0
+Sam Howell,Sam Howell,QB,SEA,23.0,1,1481,1,14,-13,5.0,,0,0
+Luke Schoonmaker,Luke Schoonmaker,TE,DAL,25.0,1,1493,1,14,-13,5.0,,0,0
+Gerald Everett,Gerald Everett,TE,CHI,30.0,1,895,1,8,-7,3.0,,1,0
+Isaiah Davis,Isaiah Davis,RB,NYJ,22.0,1,1219,1,11,-10,4.0,,1,0
+Michael Carter,Michael Carter,RB,ARI,25.0,1,879,1,7,-6,3.0,,1,0
+Brevin Jordan,Brevin Jordan,TE,HOU,24.0,1,1243,1,11,-10,4.0,,1,0
+Evan Hull,Evan Hull,RB,IND,23.0,1,1493,1,14,-13,5.0,,1,0
+D'Ernest Johnson,D'Ernest Johnson,RB,JAC,28.0,1,663,1,5,-4,2.0,,1,0
+Sean Tucker,Sean Tucker,RB,TBB,22.0,1,1173,1,10,-9,4.0,,0,0
+Samaje Perine,Samaje Perine,RB,DEN,28.0,1,1009,1,9,-8,4.0,,0,0
+Dalvin Cook,Dalvin Cook,RB,BAL,29.0,1,200,1,1,0,1.0,,0,0
+Jamaal Williams,Jamaal Williams,RB,NOS,29.0,1,908,1,8,-7,3.0,,0,0
+Jase McClellan,Jase McClellan,RB,ATL,22.0,1,960,1,8,-7,3.0,,1,0
+Kareem Hunt,Kareem Hunt,RB,FA,29.0,1,205,1,1,0,1.0,,1,0
+Darnell Washington,Darnell Washington,TE,PIT,23.0,1,1192,1,11,-10,4.0,,1,0
+Kylen Granson,Kylen Granson,TE,IND,26.0,1,710,1,6,-5,3.0,,1,0
+Josh Whyle,Josh Whyle,TE,TEN,24.0,1,480,1,3,-2,2.0,,1,0
+Robert Tonyan,Robert Tonyan,TE,MIN,30.0,1,343,1,2,-1,1.0,,1,0
+Gardner Minshew II,Gardner Minshew,QB,LVR,28.0,1,1519,1,14,-13,5.0,,1,0
+Kayshon Boutte,Kayshon Boutte,WR,NEP,22.0,1,1092,1,10,-9,4.0,,1,0
+Pierre Strong Jr.,Pierre Strong Jr.,RB,CLE,25.0,1,906,1,8,-7,3.0,,1,0
+Sam Darnold,Sam Darnold,QB,MIN,27.0,1,1359,1,12,-11,5.0,,1,0
+Ronnie Rivers,Ronnie Rivers,RB,LAR,25.0,1,478,1,3,-2,2.0,,1,0
+Jacoby Brissett,Jacoby Brissett,QB,NEP,31.0,1,731,1,6,-5,3.0,,1,0
+Trey Lance,Trey Lance,QB,DAL,24.0,1,811,1,7,-6,3.0,,1,0
+Jameis Winston,Jameis Winston,QB,CLE,30.0,1,560,1,4,-3,2.0,,1,0
+Drew Lock,Drew Lock,QB,NYG,27.0,1,641,1,5,-4,2.0,,1,0
+Spencer Rattler,Spencer Rattler,QB,NOS,23.0,1,1536,1,14,-13,5.0,,1,0
+Jordan Travis,Jordan Travis,QB,NYJ,24.0,1,616,1,5,-4,2.0,,1,0
+Royce Freeman,Royce Freeman,RB,DAL,28.0,1,474,1,3,-2,2.0,,1,0
+Trayveon Williams,Trayveon Williams,RB,CIN,26.0,1,725,1,6,-5,3.0,,1,0
+Kenny McIntosh,Kenny McIntosh,RB,SEA,24.0,0,709,0,6,-6,2.0,,1,0
+Tyson Bagent,Tyson Bagent,QB,CHI,24.0,0,164,0,0,0,0.0,,1,0
+Tyler Huntley,Tyler Huntley,QB,CLE,26.0,0,278,0,1,-1,0.0,,1,0
+Kyle Trask,Kyle Trask,QB,TBB,26.0,0,222,0,1,-1,0.0,,1,0
+Mitchell Trubisky,Mitchell Trubisky,QB,BUF,30.0,0,170,0,0,0,0.0,,1,0
+Desmond Ridder,Desmond Ridder,QB,ARI,24.0,0,389,0,2,-2,1.0,,1,0
+Joe Milton III,Joe Milton,QB,NEP,24.0,0,183,0,0,0,0.0,,1,0
+Mason Rudolph,Mason Rudolph,QB,TEN,29.0,0,170,0,0,0,0.0,,1,0
+Davis Mills,Davis Mills,QB,HOU,25.0,0,171,0,0,0,0.0,,1,0
+Joshua Dobbs,Joshua Dobbs,QB,SFO,29.0,0,165,0,0,0,0.0,,1,0
+Zach Wilson,Zach Wilson,QB,DEN,25.0,0,371,0,2,-2,1.0,,1,0
+Stetson Bennett,Stetson Bennett,QB,LAR,26.0,0,179,0,0,0,0.0,,1,0
+Joe Flacco,Joe Flacco,QB,IND,39.0,0,164,0,0,0,0.0,,1,0
+Tyrod Taylor,Tyrod Taylor,QB,NYJ,35.0,0,167,0,0,0,0.0,,1,0
+Michael Pratt,Michael Pratt,QB,GBP,22.0,0,167,0,0,0,0.0,,1,0
+Jimmy Garoppolo,Jimmy Garoppolo,QB,LAR,32.0,0,168,0,0,0,0.0,,1,0
+Tommy Tremble,Tommy Tremble,TE,CAR,24.0,0,790,0,7,-7,2.0,,1,0
+Irv Smith Jr.,Irv Smith,TE,KCC,26.0,0,841,0,7,-7,2.0,,1,0
+Cole Turner,Cole Turner,TE,WAS,24.0,0,770,0,6,-6,2.0,,1,0
+Adam Trautman,Adam Trautman,TE,DEN,27.0,0,620,0,5,-5,2.0,,0,0
+Mo Alie-Cox,Mo Alie-Cox,TE,IND,30.0,0,274,0,1,-1,0.0,,1,0
+Austin Hooper,Austin Hooper,TE,NEP,29.0,0,319,0,2,-2,1.0,,1,0
+Brock Wright,Brock Wright,TE,DET,25.0,0,525,0,4,-4,1.0,,1,0
+Josh Oliver,Josh Oliver,TE,MIN,27.0,0,399,0,3,-3,1.0,,1,0
+Foster Moreau,Foster Moreau,TE,NOS,27.0,0,546,0,4,-4,1.0,,1,0
+Chase Edmonds,Chase Edmonds,RB,TBB,28.0,0,673,0,5,-5,2.0,,0,0
+DeeJay Dallas,DeeJay Dallas,RB,ARI,25.0,0,378,0,2,-2,1.0,,1,0
+Bailey Zappe,Bailey Zappe,QB,NEP,25.0,0,169,0,0,0,0.0,,1,0
+Jarrett Stidham,Jarrett Stidham,QB,DEN,28.0,0,264,0,1,-1,0.0,,1,0
+Mac Jones,Mac Jones,QB,JAC,25.0,0,444,0,3,-3,1.0,,1,0
+Carson Wentz,Carson Wentz,QB,KCC,31.0,0,92,0,0,0,0.0,,1,0
+David Bell,David Bell,WR,CLE,23.0,0,1006,0,9,-9,3.0,,1,0
+Justyn Ross,Justyn Ross,WR,KCC,24.0,0,741,0,6,-6,2.0,,1,0
+Tyquan Thornton,Tyquan Thornton,WR,NEP,23.0,0,1122,0,10,-10,3.0,,1,0
+Jason Brownlee,Jason Brownlee,WR,NYJ,25.0,0,518,0,4,-4,1.0,,1,0
+Bub Means,Bub Means,WR,NOS,23.0,0,1252,0,11,-11,4.0,,1,0
+Cedrick Wilson Jr.,Cedrick Wilson,WR,NOS,28.0,0,593,0,5,-5,2.0,,1,0
+Tyler Scott,Tyler Scott,WR,CHI,22.0,0,998,0,9,-9,3.0,,1,0
+Chase Claypool,Chase Claypool,WR,BUF,26.0,0,800,0,7,-7,2.0,,0,0
+Jake Bobo,Jake Bobo,WR,SEA,26.0,0,753,0,6,-6,2.0,,1,0
+Allen Lazard,Allen Lazard,WR,NYJ,28.0,0,804,0,7,-7,2.0,,1,0
+Emari Demercado,Emari Demercado,RB,ARI,25.0,0,820,0,7,-7,2.0,,1,0
+John Metchie III,John Metchie,WR,HOU,24.0,0,1515,0,14,-14,5.0,,1,0
+Zay Jones,Zay Jones,WR,ARI,29.0,0,1547,0,14,-14,5.0,,0,0
+Brandon Powell,Brandon Powell,WR,MIN,27.0,0,641,0,5,-5,2.0,,0,0
+Jauan Jennings,Jauan Jennings,WR,SFO,27.0,0,1411,0,13,-13,4.0,,1,0
+Kendrick Bourne,Kendrick Bourne,WR,NEP,29.0,0,1595,0,15,-15,5.0,,0,0
+Rondale Moore,Rondale Moore,WR,ATL,24.0,0,1985,0,19,-19,6.0,,0,0
+Malik Davis,Malik Davis,RB,DAL,25.0,0,819,0,7,-7,2.0,,1,0
+Zach Evans,Zach Evans,RB,LAR,23.0,0,1068,0,9,-9,3.0,,1,0
+Tyler Goodson,Tyler Goodson,RB,IND,23.0,0,675,0,5,-5,2.0,,1,0
+Isaiah Spiller,Isaiah Spiller,RB,LAC,23.0,0,1097,0,10,-10,3.0,,0,0
+Cam Akers,Cam Akers,RB,HOU,25.0,0,884,0,7,-7,2.0,,1,0
+Mack Hollins,Mack Hollins,WR,BUF,30.0,0,367,0,2,-2,1.0,,1,0
+Dyami Brown,Dyami Brown,WR,WAS,24.0,0,910,0,8,-8,3.0,,1,0
+Kenny Pickett,Kenny Pickett,QB,PHI,26.0,0,577,0,4,-4,1.0,,1,0
+Hendon Hooker,Hendon Hooker,QB,DET,26.0,0,558,0,4,-4,1.0,,1,0
+Jake Browning,Jake Browning,QB,CIN,28.0,0,617,0,5,-5,2.0,,1,0
+Frank Gore Jr.,Frank Gore Jr.,RB,BUF,22.0,0,1393,0,13,-13,4.0,,0,0
+Deuce Vaughn,Deuce Vaughn,RB,DAL,22.0,0,1498,0,14,-14,5.0,,0,0
+Ty Johnson,Ty Johnson,RB,BUF,26.0,0,701,0,6,-6,2.0,,0,0
+Craig Reynolds,Craig Reynolds,RB,DET,28.0,0,477,0,3,-3,1.0,,1,0
+Kevin Harris,Kevin Harris,RB,NEP,23.0,0,681,0,5,-5,2.0,,1,0
+Hassan Haskins,Hassan Haskins,RB,TEN,24.0,0,579,0,4,-4,1.0,,1,0
+Keaontay Ingram,Keaontay Ingram,RB,KCC,24.0,0,801,0,7,-7,2.0,,1,0
+Louis Rees-Zammit,Louis Rees-Zammit,RB,KCC,23.0,0,998,0,9,-9,3.0,,0,0
+Dillon Johnson,Dillon Johnson,RB,CAR,23.0,0,1033,0,9,-9,3.0,,0,0
+Chris Brooks,Chris Brooks,RB,MIA,24.0,0,485,0,3,-3,1.0,,1,0
+Quez Watkins,Quez Watkins,WR,PIT,26.0,0,686,0,5,-5,2.0,,1,0

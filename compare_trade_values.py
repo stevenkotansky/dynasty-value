@@ -264,7 +264,7 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             if print_tables==True:
                 print("Unable to pull roster from ESPN. Using last manually inputted roster (7/10/24).")
             
-            roster = ["Josh Allen", "Saquon Barkley", "Travis Etienne Jr.", "Garrett Wilson", "Justin Jefferson", "Trey McBride", "De'Von Achane", "Cowboys D/ST", "Justin Tucker", "Treylon Burks", "Gus Edwards", "Dallas Goedert", "Geno Smith", "Jahan Dotson", "Jermaine Burton", "Ray Davis", "Tee Higgins", "Jake Ferguson", "Zack Moss", "Tank Bigsby", "Nick Chubb", "Braelon Allen", "Aaron Rodgers", "Rico Dowdle", "Rasheen Ali"]
+            roster = ["Josh Allen", "Saquon Barkley", "Travis Etienne Jr.", "Garrett Wilson", "Justin Jefferson", "Trey McBride", "De'Von Achane", "Cowboys D/ST", "Justin Tucker", "Treylon Burks", "Gus Edwards", "Dallas Goedert", "Geno Smith", "Jahan Dotson", "Jermaine Burton", "Ray Davis", "Tee Higgins", "Jake Ferguson", "Zack Moss", "Tank Bigsby", "Nick Chubb", "Braelon Allen", "Aaron Rodgers", "Rico Dowdle", "Deneric Prince"]
             
             for player in roster:
                 name = player
@@ -446,8 +446,27 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             for _, player in bottom_roster_players[bottom_roster_players['Position'] == pos].iterrows():
                 rostered_player_vorp[player['Player']] = round(player['avg_value'] - weighted_avg_value,1)
 
+    # Merging redraft rankings into the bottom_roster_players and top_free_agents dataframes
+    bottom_roster_players = bottom_roster_players.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+    top_free_agents = top_free_agents.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
+
+    # Fill missing rankings with 300
+    bottom_roster_players['Rk'].fillna(300, inplace=True)
+    top_free_agents['Rk'].fillna(300, inplace=True)
+
+    # Convert rankings to int where possible for proper display
+    bottom_roster_players['Rk'] = bottom_roster_players['Rk'].apply(lambda x: int(x))
+    top_free_agents['Rk'] = top_free_agents['Rk'].apply(lambda x: int(x))
+
+    # Rename 'Rk' column to 'redraft_rank' for clarity
+    bottom_roster_players.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
+    top_free_agents.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
+
     # Add VORP to bottom roster players
     bottom_roster_players['VORP'] = bottom_roster_players.apply(lambda player: rostered_player_vorp.get(player['Player'], 0), axis=1)
+
+    # Add VORP to top free agents
+    top_free_agents['VORP'] = top_free_agents.apply(lambda player: free_agent_vorp.get(player['Player'], 0), axis=1)
 
     # Sort bottom_roster_players by avg_value and top_free_agents by avg_value
     bottom_roster_players_sorted = bottom_roster_players.sort_values(by='avg_value')
@@ -460,14 +479,18 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
     # Compare and suggest players to drop and add (overall)
     for _, free_agent in top_free_agents_sorted.iterrows():
         for _, roster_player in bottom_roster_players_sorted.iterrows():
-            if free_agent['avg_value'] > roster_player['avg_value'] or (free_agent['avg_value'] <= roster_player['avg_value'] <= free_agent['avg_value'] + recommend_adds_within_x_value_points):
+            if (free_agent['avg_value'] > roster_player['avg_value'] or 
+            (free_agent['avg_value'] <= roster_player['avg_value'] <= free_agent['avg_value'] + recommend_adds_within_x_value_points 
+            and
+            (free_agent['VORP'] > roster_player['VORP'] or free_agent['redraft_rank'] < roster_player['redraft_rank']))):
                 players_to_drop.append({
                     'Player': roster_player['Player'],
                     'Position': roster_player['Position'],
                     'Team': roster_player['Team'],
                     'Age': roster_player['Age'],
                     'avg_value': roster_player['avg_value'],
-                    'VORP': roster_player['VORP']
+                    'VORP': roster_player['VORP'],
+                    'redraft_rank': roster_player['redraft_rank']
                 })
                 players_to_add.append({
                     'Player': free_agent['Player'],
@@ -475,37 +498,14 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
                     'Team': free_agent['Team'],
                     'Age': free_agent['Age'],
                     'avg_value': free_agent['avg_value'],
-                    'VORP': free_agent_vorp.get(free_agent['Player'], 0)
+                    'VORP': free_agent['VORP'],
+                    'redraft_rank': free_agent['redraft_rank']
                 })
                 bottom_roster_players_sorted = bottom_roster_players_sorted[bottom_roster_players_sorted['Player'] != roster_player['Player']]
                 break
 
-
-    # add back to dataframes
-    # Add VORP to bottom roster players
-    bottom_roster_players['VORP'] = bottom_roster_players.apply(lambda player: rostered_player_vorp.get(player['Player'], 0), axis=1)
-
-    # Add VORP to top free agents
-    top_free_agents['VORP'] = top_free_agents.apply(lambda player: free_agent_vorp.get(player['Player'], 0), axis=1)
-
-
     pd.set_option("display.max_columns", 8)
 
-    # Merging redraft rankings into the bottom_roster_players and top_free_agents dataframes
-    bottom_roster_players = bottom_roster_players.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
-    top_free_agents = top_free_agents.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
-
-    # Fill missing rankings with "251+"
-    bottom_roster_players['Rk'].fillna('251+', inplace=True)
-    top_free_agents['Rk'].fillna('251+', inplace=True)
-
-    # Convert rankings to int where possible for proper display
-    bottom_roster_players['Rk'] = bottom_roster_players['Rk'].apply(lambda x: int(x) if x != '251+' else x)
-    top_free_agents['Rk'] = top_free_agents['Rk'].apply(lambda x: int(x) if x != '251+' else x)
-
-    # Rename 'Rk' column to 'redraft_rank' for clarity
-    bottom_roster_players.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
-    top_free_agents.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
 
     if print_tables==True:
         print()
@@ -522,22 +522,6 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
     players_to_drop_df = pd.DataFrame(players_to_drop)
     players_to_add_df = pd.DataFrame(players_to_add)
 
-    # Merging redraft rankings into the player dataframes
-    players_to_drop_df = players_to_drop_df.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
-    players_to_add_df = players_to_add_df.merge(jb_redraft_df[['Player', 'Rk']], on='Player', how='left')
-
-    # Fill missing rankings with "251+"
-    players_to_drop_df['Rk'].fillna('251+', inplace=True)
-    players_to_add_df['Rk'].fillna('251+', inplace=True)
-
-    # Convert rankings to int where possible for proper display
-    players_to_drop_df['Rk'] = players_to_drop_df['Rk'].apply(lambda x: int(x) if x != '251+' else x)
-    players_to_add_df['Rk'] = players_to_add_df['Rk'].apply(lambda x: int(x) if x != '251+' else x)
-
-    # Rename 'Rk' column to 'redraft_rank' for clarity
-    players_to_drop_df.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
-    players_to_add_df.rename(columns={'Rk': 'redraft_rank'}, inplace=True)
-
     # Output overall recommendations
     if players_to_drop_df.empty is False and players_to_add_df.empty is False:
         print("You should consider making the following transactions (overall):")
@@ -547,10 +531,6 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             add_player = players_to_add_df.iloc[i]
             
             # Determine if the add_player is a sure "Add" or "Maybe Add"
-            if add_player["redraft_rank"]=="251+":
-                add_player["redraft_rank"]=300
-            if drop_player["redraft_rank"]=="251+":
-                drop_player["redraft_rank"]=300
             if (add_player['VORP'] >= drop_player['VORP'] and add_player['avg_value'] > drop_player['avg_value']) and add_player['redraft_rank']<=drop_player["redraft_rank"]:
                 add_suggestion = "Add"
                 drop_suggestion = "Drop"
@@ -580,8 +560,12 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
         bottom_roster_players_pos_sorted = bottom_roster_players[bottom_roster_players['Position'] == pos].sort_values(by='avg_value')
         top_free_agents_pos_sorted = top_free_agents[top_free_agents['Position'] == pos].sort_values(by='avg_value', ascending=False)
         for _, roster_player in bottom_roster_players_pos_sorted.iterrows():
-            for _, free_agent in top_free_agents_pos_sorted.iterrows():
-                if free_agent['avg_value'] > roster_player['avg_value'] or (free_agent['avg_value'] <= roster_player['avg_value'] <= free_agent['avg_value'] + recommend_adds_within_x_value_points):
+            for _, free_agent in top_free_agents_pos_sorted.iterrows():           
+                if (free_agent['avg_value'] > roster_player['avg_value'] 
+                or 
+                (free_agent['avg_value'] <= roster_player['avg_value'] <= free_agent['avg_value'] + recommend_adds_within_x_value_points 
+                and
+                (free_agent['VORP'] > roster_player['VORP'] or free_agent['redraft_rank'] < roster_player['redraft_rank']))):
                     if roster_player['Player'] not in position_based_recommendations:
                         position_based_recommendations[roster_player['Player']] = {
                             'drop': {
@@ -614,10 +598,6 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
             valid_add_candidates = []
             for i, add_candidate in enumerate(recommendation['add_candidates'], start=1):
                 # Determine if the add_candidate is a sure "Add" or "Maybe Add"
-                if add_candidate["redraft_rank"]=="251+":
-                    add_candidate["redraft_rank"]=300
-                if drop_info["redraft_rank"]=="251+":
-                    drop_info["redraft_rank"]=300
                 if (add_candidate['VORP'] >= drop_info['VORP'] and add_candidate['avg_value'] > drop_info['avg_value'] and add_candidate['redraft_rank']<=drop_info["redraft_rank"]):
                     add_suggestion = "Add"
                 else:

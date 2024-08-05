@@ -127,7 +127,7 @@ def get_jb_trade_values(printval=True):
         return dict_of_tables, datetime_value, filename_prefix, combined_df
 
     # Get most recent dynasty rankgs
-    url = "https://www.thescore.com/nfl/news/2934869/fantasy-dynasty-trade-value-chart-july-edition"
+    url = "https://www.thescore.com/nflfan/news/3047962/fantasy-dynasty-trade-value-chart-august-edition"
     dict_of_dfs, datetime_value, filename_prefix, combined_df = fetch_dynasty_tables(url, starting_page="QB", filename_prefix="Dynasty_Trade_Value")
     if printval==True:
         print("Finished scraping Justin Boone trade values")

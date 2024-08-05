@@ -12,11 +12,11 @@ from compare_trade_values import run_league
 from sklearn.preprocessing import MinMaxScaler
 
 # Define how the process should run
-offline=False
+offline=True
 show_visual=False
 
 # Choose if you want high level recommendations for all leagues, or specific recommendations for one league
-high_level_recommendations=True
+high_level_recommendations=False
 
 if high_level_recommendations==True:
     leagues = ["Nerd Herd Dynasty", "Fantasy Degens", "Dirty Dozen"]
