@@ -1,0 +1,13 @@
+/* Styles for the loading screen */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f0f0;
+}
+
+.loading img {
+    max-width: 100px;
+    height: auto;
+}

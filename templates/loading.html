@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="loading-container">
+        <img src="{{ url_for('static', filename='60afd586940957.5da891d7d5f93.gif') }}" alt="Loading">
+    </div>
+    <script>
+        function checkDataReady() {
+            fetch('/status').then(response => {
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    setTimeout(checkDataReady, 1000); // Check every second
+                }
+            });
+        }
+        checkDataReady();
+    </script>
+</body>
+</html>
