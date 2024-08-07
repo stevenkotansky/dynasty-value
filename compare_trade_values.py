@@ -31,19 +31,19 @@ def get_latest_file(directory):
 
 date_str = datetime.now().strftime('%Y%m%d')
 
-def run_league(league_name, recommend_adds_within_x_value_points, recommend_maybe, offline, show_visual, print_tables):
+def run_league(league_name, recommend_adds_within_x_value_points, recommend_maybe, offline, show_visual, print_tables, mobile):
     print(f"Analyzing Potential Adds/Drops for {league_name}")
 
-    if offline:
+    if offline and mobile==False:
         if print_tables==True:
             print("Running in offline mode using most recently downloaded rankings.")
         jb_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/dynasty/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/dynasty"))
         jb_redraft_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/jb/outfiles/redraft"))
         ktc_df = pd.read_csv("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"+get_latest_file("/Users/steven/Library/CloudStorage/OneDrive-Personal/Documents/2024/fantasy_coding/dynasty-value/ktc/outfiles/all_players/"))
     else:
-        jb_df = get_jb_trade_values(printval=print_tables)
-        jb_redraft_df = get_jb_redraft(printval=print_tables)
-        ktc_df = get_ktc_trade_values(printval=print_tables)
+        jb_df = get_jb_trade_values(printval=print_tables, mobile=mobile)
+        jb_redraft_df = get_jb_redraft(printval=print_tables, mobile=mobile)
+        ktc_df = get_ktc_trade_values(printval=print_tables, mobile=mobile)
 
 
     def normalize_name(player_name):
@@ -373,7 +373,8 @@ def run_league(league_name, recommend_adds_within_x_value_points, recommend_mayb
     merged_df["Position"] = merged_df.apply(lambda row: change_player_positions(row), axis=1)
 
     # save the df with the free agent indicators and roster indicators to CSV
-    merged_df.to_csv(f"trade_value_comps/trade_value_comparison_{date_str}.csv", index=False)
+    if mobile==False:
+        merged_df.to_csv(f"trade_value_comps/trade_value_comparison_{date_str}.csv", index=False)
 
     # identify valuable free agents compared to bottom of roster
     bottom_roster_players = merged_df[merged_df["rostered_indicator"]==1].sort_values(by="weighted_avg_trade_value").head(10)

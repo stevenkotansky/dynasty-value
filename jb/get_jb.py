@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
 
-def get_jb_trade_values(printval=True):
+def get_jb_trade_values(printval=True, mobile=False):
     if printval==True:
         print()
         print()
@@ -117,8 +117,9 @@ def get_jb_trade_values(printval=True):
         combined_df['JB_normalized'] = scaler.fit_transform(combined_df[['JB Trade Value']])
         combined_df['JB_normalized'] = (combined_df['JB_normalized']*100).astype(int)
 
-        combined_df.to_csv(f"jb/outfiles/dynasty/players_{filename_prefix}_{datetime_value}.csv", index=False)
-        dict_of_dfs["Draft Picks"].to_csv(f"jb/outfiles/dynasty/Draft_Picks_{filename_prefix}_{datetime_value}.csv", index=False)
+        if mobile==False:
+            combined_df.to_csv(f"jb/outfiles/dynasty/players_{filename_prefix}_{datetime_value}.csv", index=False)
+            dict_of_dfs["Draft Picks"].to_csv(f"jb/outfiles/dynasty/Draft_Picks_{filename_prefix}_{datetime_value}.csv", index=False)
 
 
 
@@ -137,7 +138,7 @@ def get_jb_trade_values(printval=True):
     return combined_df
 
 
-def get_jb_redraft(printval=True):
+def get_jb_redraft(printval=True, mobile=False):
     if printval==True:
         print()
         print()
@@ -176,7 +177,8 @@ def get_jb_redraft(printval=True):
         # save outfiles
         redraft_rankings_df = df
 
-        redraft_rankings_df.to_csv(f"jb/outfiles/redraft/players_redraft_rankings_{datetime_value}.csv", index=False)
+        if mobile==False:
+            redraft_rankings_df.to_csv(f"jb/outfiles/redraft/players_redraft_rankings_{datetime_value}.csv", index=False)
 
 
         return redraft_rankings_df

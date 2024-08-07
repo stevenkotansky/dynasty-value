@@ -6,7 +6,7 @@ from os import path
 from sklearn.preprocessing import MinMaxScaler
 
 
-def get_ktc_trade_values(printval=True):
+def get_ktc_trade_values(printval=True, mobile=False):
     if printval==True:
         print()
         print("Scraping KTC trade values")
@@ -82,7 +82,8 @@ def get_ktc_trade_values(printval=True):
 
     
     # save full thing to csv
-    full_df.to_csv(csv_path, index=False)
+    if mobile==False:
+        full_df.to_csv(csv_path, index=False)
 
 
     #get rookie rankings
@@ -95,7 +96,8 @@ def get_ktc_trade_values(printval=True):
         rookie_df = getTradeValues(superflex=True, pagenum=0, rookies=True, include_picks=False)
 
         # save full thing to csv
-        rookie_df.to_csv(csv_path, index=False)
+        if mobile==False:
+            rookie_df.to_csv(csv_path, index=False)
 
     if printval==True:
         print("Finished getting KTC trade values")
