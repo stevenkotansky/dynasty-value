@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football Recommendations</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fantasy Football Recommendations</h1>
+
+    <h2>Bottom 10 Roster Players</h2>
+    {{ bottom_roster_players|safe }}
+
+    <h2>Top 30 Free Agents</h2>
+    {{ top_free_agents|safe }}
+
+    <h2>Printout</h2>
+    {{ printout|safe }}
+    </ul>
+</body>
+</html>
